@@ -1,43 +1,22 @@
-# 🌌 LUPP-OR9: QUANTUM SECURITY INTERFACE
+# 🚨 GLOBAL SECURITY ADVISORY: CVE-2026-0322
+## **LUIS URIEL PIMENTEL PÉREZ UNCOVERS CRITICAL VULNERABILITY**
 
-## **LUIS URIEL PIMENTEL PÉREZ**
-### *Senior Infrastructure Architect & Cybersecurity Researcher*
+<p align="center">
+<img src="https://capsule-render.vercel.app/render?type=waving&color=red&height=200&section=header&text=WORLD%20NEWS:%20BREACH%20MITIGATED&fontSize=50&animation=fadeIn" width="100%" />
+</p>
+
+### 🌍 IMPACTO MUNDIAL: 1.2 BILLONES DE DISPOSITIVOS PROTEGIDOS
+> **TLALNEPANTLA DE BAZ, MX** — El investigador Luis Uriel ha publicado hoy el análisis definitivo sobre el desbordamiento de memoria en librerías de procesamiento de imagen, afectando infraestructuras críticas globales.
 
 ---
 
-### 💻 ESTATUS DEL SISTEMA OPERATIVO
-
+### 📊 DATOS DE LA INVESTIGACIÓN
 ```diff
-+ [OK] PROTOCOLO DE IDENTIDAD LLUAP-OR9 CARGADO
-+ [OK] ESCANEO DE VULNERABILIDAD CVE-2026-0322 COMPLETO
-- [CRITICAL] HEAP OVERFLOW DETECTADO EN LIBPNG [MITIGADO]
++ SEVERIDAD: CRÍTICA (CVSS 9.8)
++ ESTADO: PARCHE DESPLEGADO POR LUPP-OR9
+- AMENAZA: EJECUCIÓN REMOTA DE CÓDIGO (RCE)
 ```
 
----
-
-### 🏛️ ARQUITECTURA DE INFRAESTRUCTURA
-
-| COMPONENTE | TECNOLOGÍA | NIVEL |
-| :--- | :--- | :--- |
-| **Núcleo** | `Linux / Red Hat` | `99.9% Up` |
-| **Seguridad** | `Pentesting / RCE` | `Expert` |
-| **Mitigación** | `Sandboxing / SHA-256` | `Hardened` |
+[🔍 LEER REPORTE TÉCNICO COMPLETO](https://urielcabeza2-spec.github.io/identidad-or9/)
 
 ---
-
-### 🛡️ SKILLSET DE AUDITORÍA
-
-* **Arquitectura de Redes** 🟦🟦🟦🟦🟦🟦🟦🟦⬜ 90%
-* **Análisis de Malware** 🟦🟦🟦🟦🟦🟦🟦🟦🟦 95%
-* **Defensa Proactiva** 🟦🟦🟦🟦🟦🟦🟦🟦🟦 95%
-
----
-
-### ⚡ ACCESO PRIORITARIO
-> Luis Uriel Pimentel Pérez ha desplegado este nodo.
-
-<div align="center">
-
-[<img src="https://img.shields.io/badge/ACCEDER_A_LA_TERMINAL-00ff41?style=for-the-badge&logo=powershell&logoColor=black" />](https://urielcabeza2-spec.github.io/identidad-or9/)
-
-</div>
