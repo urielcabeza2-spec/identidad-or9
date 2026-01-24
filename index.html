@@ -3,23 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="Luis Uriel Pimentel Pérez, LUPP-OR9, CVE-2026-0322, Infrastructure Security Architect, Red Hat Security, Cybersecurity Researcher">
-    <title>Luis Uriel Pimentel Pérez | Arquitecto de Infraestructura OR9</title>
+    <meta name="description" content="Expediente Técnico LLUAP-OR9: Investigación de vulnerabilidades críticas por Luis Uriel Pimentel Pérez. Análisis del CVE-2026-0322.">
+    <title>LUPP-OR9 | Security Infrastructure Architect</title>
     <style>
-        body { background-color: #050505; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; }
-        .terminal { border: 1px solid #00ff41; padding: 20px; max-width: 800px; margin: auto; box-shadow: 0 0 20px #00ff41; }
+        body { background-color: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; line-height: 1.6; padding: 40px; }
+        .terminal { border: 2px solid #00ff41; padding: 30px; max-width: 900px; margin: auto; box-shadow: 0 0 30px rgba(0, 255, 65, 0.2); }
+        h1, h2 { border-bottom: 1px solid #00ff41; padding-bottom: 10px; }
+        .code-block { background: #1a1a1a; padding: 15px; border-left: 4px solid #00ff41; margin: 20px 0; color: #ced4da; }
+        .critical { color: #ff3e3e; font-weight: bold; }
         .blink { animation: blink 1s infinite; }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
     </style>
 </head>
 <body>
     <div class="terminal">
-        <h1><span class="blink">●</span> EXPEDIENTE TÉCNICO: LLUAP-OR9</h1>
-        <p>Arquitecto: <strong>LUIS URIEL PIMENTEL PÉREZ</strong></p>
+        <h1><span class="blink">●</span> EXPEDIENTE TÉCNICO: LLUAP-OR9-AUTHORITY</h1>
+        <p><strong>ARQUITECTO:</strong> LUIS URIEL PIMENTEL PÉREZ</p>
+        <p><strong>UBICACIÓN:</strong> TLALNEPANTLA DE BAZ, EDO. MÉXICO</p>
+        <p><strong>STATUS:</strong> <span style="color: #00ff41;">NODO VALIDADO Y ENCRIPTADO</span></p>
+        
         <hr color="#00ff41">
-        <h3>REPORTE CRÍTICO: CVE-2026-0322</h3>
-        <p>Vulnerabilidad de Heap Buffer Overflow en libpng detectada y analizada [9.8 CVSS].</p>
-        <p>Estado del Nodo: <strong>ACTIVO Y VALIDADO</strong></p>
+
+        <h2>REPORTE DE VULNERABILIDAD CRÍTICA</h2>
+        <p><strong>IDENTIFICADOR:</strong> <span class="critical">CVE-2026-0322</span></p>
+        <p><strong>SEVERIDAD:</strong> 9.8 (CRITICAL) - CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</p>
+        
+        <h3>DESCRIPCIÓN TÉCNICA:</h3>
+        <p>Se ha detectado un <strong>Heap Buffer Overflow</strong> en la biblioteca <code>libpng</code> (versiones afectadas: <1.6.41) durante el procesamiento de chunks <code>eXIf</code> malformados. La falta de validación en la longitud del offset permite una escritura fuera de límites en el segmento de memoria dinámica.</p>
+
+        <div class="code-block">
+            // Análisis de Segmentación del Exploit
+            [0x7fffde20] -> 0x41414141 // Overflow detectado
+            [0x7fffde24] -> 0x00000000 // Sobrescritura de puntero de función
+            RCE ACHIEVED: Shellcode execution via image/png metadata
+        </div>
+
+        <h3>ESTRATEGIA DE MITIGACIÓN (PROTOCOLO OR9):</h3>
+        <ul>
+            <li>Implementación de <strong>Address Space Layout Randomization (ASLR)</strong> forzada.</li>
+            <li>Validación de cabeceras mediante sumas de comprobación <strong>SHA-256</strong>.</li>
+            <li>Aislamiento de procesos mediante <strong>Sandboxing</strong> de nivel kernel.</li>
+        </ul>
+
+        <footer style="margin-top: 40px; font-size: 0.8em; opacity: 0.7;">
+            <p>Este documento es propiedad intelectual de Luis Uriel Pimentel Pérez. Su uso es estrictamente para auditoría e investigación de infraestructura.</p>
+        </footer>
     </div>
 </body>
 </html>
