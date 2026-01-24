@@ -1,0 +1,14 @@
+./address.go
+./blood.go
+./datetime.go
+./faker.go
+./internet.go
+./lorem.go
+./payment.go
+./person.go
+./phone.go
+./price.go
+./random_source.go
+./tag_argument_extractor.go
+./user_agent.go
+./uuid.go

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://urielcabeza2-spec.github.io/identidad-or9/sitemap.xml

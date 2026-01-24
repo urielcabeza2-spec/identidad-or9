@@ -1,0 +1,10 @@
+./context.go
+./default_config.go
+./dialer.go
+./dialer_private.go
+./doc.go
+./error.go
+./options.go
+./resolverfile.go
+./resolverfile_unix.go
+./util.go

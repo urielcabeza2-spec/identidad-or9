@@ -1,0 +1,6 @@
+./common.go
+./preprocess.go
+./stem.go
+./step1.go
+./step2.go
+./step3.go

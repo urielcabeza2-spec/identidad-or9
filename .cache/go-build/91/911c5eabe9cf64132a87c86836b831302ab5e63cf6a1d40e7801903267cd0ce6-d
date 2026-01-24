@@ -1,0 +1,3 @@
+./doc.go
+./mount_linux.go
+./openat2_linux.go
