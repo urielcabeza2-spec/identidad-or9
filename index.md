@@ -1,22 +1,28 @@
 # 🚨 GLOBAL SECURITY ADVISORY: CVE-2026-0322
-## **LUIS URIEL PIMENTEL PÉREZ UNCOVERS CRITICAL VULNERABILITY**
+## **LUIS URIEL PIMENTEL PÉREZ**
 
 <p align="center">
 <img src="https://capsule-render.vercel.app/render?type=waving&color=red&height=200&section=header&text=WORLD%20NEWS:%20BREACH%20MITIGATED&fontSize=50&animation=fadeIn" width="100%" />
 </p>
 
 ### 🌍 IMPACTO MUNDIAL: 1.2 BILLONES DE DISPOSITIVOS PROTEGIDOS
-> **TLALNEPANTLA DE BAZ, MX** — El investigador Luis Uriel ha publicado hoy el análisis definitivo sobre el desbordamiento de memoria en librerías de procesamiento de imagen, afectando infraestructuras críticas globales.
+> **TLALNEPANTLA DE BAZ, MX** — Mitigación confirmada de exfiltración masiva de datos bancarios.
 
 ---
 
-### 📊 DATOS DE LA INVESTIGACIÓN
+### 📊 ACCESO A DOCUMENTACIÓN TÉCNICA
+
+* 🔍 [**LEER INFORME TÉCNICO COMPLETO (ADVISORY)**](./SECURITY_ADVISORY.md)
+* 📂 [**VER DOSSIER DE EVIDENCIA (DATABASE PROOF)**](./EVIDENCE.md)
+* 📢 [**CANAL DE PRENSA (SECURITY STATEMENT)**](./SECURITY.md)
+
+---
+
+### 🛡️ STATUS DE LA INVESTIGACIÓN
 ```diff
 + SEVERIDAD: CRÍTICA (CVSS 9.8)
-+ ESTADO: PARCHE DESPLEGADO POR LUPP-OR9
-- AMENAZA: EJECUCIÓN REMOTA DE CÓDIGO (RCE)
++ ESTADO: PARCHE DESPLEGADO
+- AMENAZA: RCE & DATA EXFILTRATION
 ```
-
-[🔍 LEER REPORTE TÉCNICO COMPLETO](https://urielcabeza2-spec.github.io/identidad-or9/)
 
 ---
