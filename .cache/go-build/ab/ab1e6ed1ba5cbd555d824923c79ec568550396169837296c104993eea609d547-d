@@ -1,9 +1,0 @@
-./common.go
-./postprocess.go
-./preprocess.go
-./stem.go
-./step0.go
-./step1.go
-./step2a.go
-./step2b.go
-./step3.go

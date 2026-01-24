@@ -1,6 +1,0 @@
-./capture_writer.go
-./http_probe.go
-./index.go
-./insertion_ordered_map.go
-./template_path.go
-./utils.go

@@ -1,7 +1,0 @@
-./fingerprint_body.go
-./fingerprint_cookies.go
-./fingerprint_headers.go
-./fingerprints.go
-./fingerprints_data.go
-./patterns.go
-./tech.go

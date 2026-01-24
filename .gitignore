@@ -1,11 +1,6 @@
-go/bin/
-*.wav
-nuclei
-identidad-or9.zip
 .zsh_history
-Card-Number/
-nuclei-templates/
-.zsh_history
-go/
-.zcompdump*
-.zsh_history
+.bash_history
+.cache/
+*.json
+node_modules/
+.env

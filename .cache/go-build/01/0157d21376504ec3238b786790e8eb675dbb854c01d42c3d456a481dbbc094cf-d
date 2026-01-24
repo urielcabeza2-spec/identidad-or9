@@ -1,8 +1,0 @@
-./conn.go
-./pool.go
-./pool_single.go
-./pool_sticky.go
-./reader.go
-./reader_buf.go
-./reader_bytes.go
-./write_buffer.go

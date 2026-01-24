@@ -1,8 +1,0 @@
-./bboltdb.go
-./buntdb.go
-./disk.go
-./doc.go
-./error.go
-./kv.go
-./leveldb.go
-./pogreb_all.go

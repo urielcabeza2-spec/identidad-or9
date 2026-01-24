@@ -1,3 +1,0 @@
-./bin_amd64_linux.go
-./bin_arm64_linux.go
-./leakless.go

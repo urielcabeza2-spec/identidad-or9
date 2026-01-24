@@ -1,5 +1,0 @@
-./client.go
-./error.go
-./format.go
-./utils.go
-./websocket.go

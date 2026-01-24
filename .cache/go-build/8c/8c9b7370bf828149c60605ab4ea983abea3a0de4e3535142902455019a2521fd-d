@@ -1,4 +1,0 @@
-./cli.go
-./formatter.go
-./json.go
-./tee.go

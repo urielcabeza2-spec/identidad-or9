@@ -1,5 +1,0 @@
-./at_linux.go
-./fd.go
-./fd_linux.go
-./mount_linux.go
-./openat2_linux.go

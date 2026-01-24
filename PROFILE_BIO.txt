@@ -1,9 +1,0 @@
-------------------------------------------------------------
-LUPP-OR9: ARQUITECTO DE INFRAESTRUCTURA & INVESTIGADOR
-------------------------------------------------------------
-Especialista en Ciberseguridad enfocado en amenazas críticas.
-Autor del Protocolo de Identidad OR9.
-Investigador activo del CVE-2026-0322 (libpng/Red Hat).
-
-"La seguridad no es un producto, es un proceso de arquitectura persistente."
-------------------------------------------------------------

@@ -1,5 +1,0 @@
-./doc.go
-./lookup_linux.go
-./mkdir_linux.go
-./open_linux.go
-./openat2_linux.go

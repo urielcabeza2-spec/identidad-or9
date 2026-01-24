@@ -1,8 +1,0 @@
-./blocking.go
-./circular.go
-./doc.go
-./errors.go
-./linked.go
-./options.go
-./priority.go
-./queue_interface.go
