@@ -10,81 +10,11 @@
 [![CVE Research](https://img.shields.io/badge/Research-CVE--2026--0322-red?style=for-the-badge&logo=data-dog)](https://urielcabeza2-spec.github.io/identidad-or9/)
 [![Node Location](https://img.shields.io/badge/Location-Tlalnepantla%20de%20Baz-blue?style=for-the-badge&logo=google-maps)](https://urielcabeza2-spec.github.io/identidad-or9/)
 
----
-
-### 💻 ESTATUS DEL SISTEMA OPERATIVO
-```diff
-+ [OK] PROTOCOLO DE IDENTIDAD LLUAP-OR9 CARGADO
-+ [OK] ESCANEO DE VULNERABILIDAD CVE-2026-0322 COMPLETO
-- [CRITICAL] HEAP OVERFLOW DETECTADO EN LIBPNG [MITIGADO]
-
-cat << 'EOF' > README.md && git add README.md && git commit -m "ARCH: Refactorización visual total LUPP-OR9" && git push origin social-viral --force
-<div align="center">
-
-# 🌌 LUPP-OR9: QUANTUM SECURITY INTERFACE
-## **LUIS URIEL PIMENTEL PÉREZ**
-### *Senior Infrastructure Architect & Cybersecurity Researcher*
-
-<img src="https://capsule-render.vercel.app/render?type=thicket&color=00ff41&height=180&section=header&text=LUPP-OR9%20AUTHORITY&fontSize=70&animation=twinkling&fontAlignY=35" width="100%" />
-
-[![Maintained?](https://img.shields.io/badge/Maintained%3F-yes-00ff41?style=for-the-badge&logo=git&logoColor=white)](https://urielcabeza2-spec.github.io/identidad-or9/)
-[![CVE Research](https://img.shields.io/badge/Research-CVE--2026--0322-red?style=for-the-badge&logo=data-dog)](https://urielcabeza2-spec.github.io/identidad-or9/)
-[![Node Location](https://img.shields.io/badge/Location-Tlalnepantla%20de%20Baz-blue?style=for-the-badge&logo=google-maps)](https://urielcabeza2-spec.github.io/identidad-or9/)
-
 </div>
 
 ---
 
 ### 💻 ESTATUS DEL SISTEMA OPERATIVO
-
-```diff
-+ [OK] PROTOCOLO DE IDENTIDAD LLUAP-OR9 CARGADO
-+ [OK] ESCANEO DE VULNERABILIDAD CVE-2026-0322 COMPLETO
-- [CRITICAL] HEAP OVERFLOW DETECTADO EN LIBPNG [MITIGADO]
-
-cat << 'EOF' > README.md
-<div align="center">
-
-# 🌌 LUPP-OR9: QUANTUM SECURITY INTERFACE
-## **LUIS URIEL PIMENTEL PÉREZ**
-### *Senior Infrastructure Architect & Cybersecurity Researcher*
-
-<img src="https://capsule-render.vercel.app/render?type=thicket&color=00ff41&height=180&section=header&text=LUPP-OR9%20AUTHORITY&fontSize=70&animation=twinkling&fontAlignY=35" width="100%" />
-
-[![Maintained?](https://img.shields.io/badge/Maintained%3F-yes-00ff41?style=for-the-badge&logo=git&logoColor=white)](https://urielcabeza2-spec.github.io/identidad-or9/)
-[![CVE Research](https://img.shields.io/badge/Research-CVE--2026--0322-red?style=for-the-badge&logo=data-dog)](https://urielcabeza2-spec.github.io/identidad-or9/)
-[![Node Location](https://img.shields.io/badge/Location-Tlalnepantla%20de%20Baz-blue?style=for-the-badge&logo=google-maps)](https://urielcabeza2-spec.github.io/identidad-or9/)
-
-</div>
-
----
-
-### 💻 ESTATUS DEL SISTEMA OPERATIVO
-
-```diff
-+ [OK] PROTOCOLO DE IDENTIDAD LLUAP-OR9 CARGADO
-+ [OK] ESCANEO DE VULNERABILIDAD CVE-2026-0322 COMPLETO
-- [CRITICAL] HEAP OVERFLOW DETECTADO EN LIBPNG [MITIGADO]
-
-cat << 'EOF' > README.md
-<div align="center">
-
-# 🌌 LUPP-OR9: QUANTUM SECURITY INTERFACE
-## **LUIS URIEL PIMENTEL PÉREZ**
-### *Senior Infrastructure Architect & Cybersecurity Researcher*
-
-<img src="https://capsule-render.vercel.app/render?type=thicket&color=00ff41&height=180&section=header&text=LUPP-OR9%20AUTHORITY&fontSize=70&animation=twinkling&fontAlignY=35" width="100%" />
-
-[![Maintained?](https://img.shields.io/badge/Maintained%3F-yes-00ff41?style=for-the-badge&logo=git&logoColor=white)](https://urielcabeza2-spec.github.io/identidad-or9/)
-[![CVE Research](https://img.shields.io/badge/Research-CVE--2026--0322-red?style=for-the-badge&logo=data-dog)](https://urielcabeza2-spec.github.io/identidad-or9/)
-[![Node Location](https://img.shields.io/badge/Location-Tlalnepantla%20de%20Baz-blue?style=for-the-badge&logo=google-maps)](https://urielcabeza2-spec.github.io/identidad-or9/)
-
-</div>
-
----
-
-### 💻 ESTATUS DEL SISTEMA OPERATIVO
-
 ```diff
 + [OK] PROTOCOLO DE IDENTIDAD LLUAP-OR9 CARGADO
 + [OK] ESCANEO DE VULNERABILIDAD CVE-2026-0322 COMPLETO
