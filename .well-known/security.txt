@@ -1,0 +1,6 @@
+# LUPP-OR9 Security Policy
+Contact: https://github.com/urielcabeza2-spec
+Acknowledgments: https://urielcabeza2-spec.github.io/identidad-or9/
+Hiring: https://linkedin.com/in/tu-perfil (Opcional)
+Canonical: https://urielcabeza2-spec.github.io/identidad-or9/.well-known/security.txt
+Policy: Professional security research and bug hunting.
