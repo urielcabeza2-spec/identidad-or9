@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" prefix="og: http://ogp.me/ns#">
 <head>
 <meta charset="UTF-8">
 <title>LUPP-OR9 | Luis Uriel Pimentel Pérez</title>
@@ -8,8 +8,10 @@
 <meta property="og:url" content="https://urielcabeza2-spec.github.io/identidad-or9/" />
 <meta property="og:title" content="LUIS URIEL PIMENTEL PÉREZ — ARCHITECT" />
 <meta property="og:description" content="💠 [VRP-RESEARCHER] High-Fidelity Signal Architecture & Critical Security. Verified Node OR9." />
-<meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&h=630" />
+<meta property="og:image" content="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=630" />
 <meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/9333/9333918.png">
 <style>
@@ -17,28 +19,21 @@
 :root { --bg: #030303; --cyan: #00ffa3; --accent: #0070f3; }
 body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 body::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(0, 255, 163, 0.05) 0%, transparent 70%); pointer-events: none; }
-
-.main-frame { z-index: 10; width: 90%; max-width: 900px; padding: 2px; background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent); border-radius: 12px; }
+.main-frame { z-index: 10; width: 90%; max-width: 900px; padding: 1px; background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent); border-radius: 12px; }
 .content { background: #080808; border-radius: 11px; padding: 60px; position: relative; overflow: hidden; }
-
-/* Efecto de rejilla de fondo */
-.content::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 30px 30px; pointer-events: none; }
-
+.content::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
 .header { text-align: left; margin-bottom: 40px; position: relative; }
 h1 { font-size: 2.2rem; font-weight: 100; letter-spacing: 12px; margin: 0; text-transform: uppercase; color: #fff; }
-.rank-badge { display: inline-block; background: rgba(0, 255, 163, 0.1); border: 1px solid var(--cyan); color: var(--cyan); font-family: 'JetBrains Mono'; font-size: 0.5rem; padding: 4px 12px; margin-top: 20px; letter-spacing: 3px; border-radius: 100px; }
-
+.rank-badge { display: inline-block; background: rgba(0, 255, 163, 0.05); border: 1px solid var(--cyan); color: var(--cyan); font-family: 'JetBrains Mono'; font-size: 0.5rem; padding: 4px 12px; margin-top: 20px; letter-spacing: 3px; border-radius: 100px; }
 .grid-data { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 60px 0; }
-.data-node { border-left: 1px solid rgba(255,255,255,0.1); padding-left: 20px; }
-.label { font-size: 0.55rem; color: #555; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 10px; }
-.value { font-size: 0.9rem; font-family: 'JetBrains Mono'; color: #ccc; }
-
+.data-node { border-left: 1px solid rgba(255,255,255,0.05); padding-left: 20px; }
+.label { font-size: 0.55rem; color: #444; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 10px; }
+.value { font-size: 0.9rem; font-family: 'JetBrains Mono'; color: #888; }
 .action-area { text-align: center; margin-top: 40px; }
-.verify-btn { display: inline-block; padding: 20px 60px; background: #fff; color: #000; text-decoration: none; font-size: 0.7rem; font-weight: 700; letter-spacing: 5px; border-radius: 4px; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; border: none; }
-.verify-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 255, 163, 0.3); background: var(--cyan); }
-
-.signature { margin-top: 60px; display: flex; justify-content: space-between; align-items: flex-end; opacity: 0.3; font-family: 'JetBrains Mono'; font-size: 0.45rem; letter-spacing: 2px; }
-.glow { color: var(--cyan); text-shadow: 0 0 10px var(--cyan); }
+.verify-btn { display: inline-block; padding: 20px 60px; background: #fff; color: #000; text-decoration: none; font-size: 0.7rem; font-weight: 700; letter-spacing: 5px; border-radius: 2px; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
+.verify-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 255, 163, 0.2); background: var(--cyan); }
+.signature { margin-top: 60px; display: flex; justify-content: space-between; align-items: flex-end; opacity: 0.2; font-family: 'JetBrains Mono'; font-size: 0.45rem; letter-spacing: 2px; }
+.glow { color: var(--cyan); }
 </style>
 </head>
 <body>
@@ -48,7 +43,6 @@ h1 { font-size: 2.2rem; font-weight: 100; letter-spacing: 12px; margin: 0; text-
             <h1 id="name">LUPP — OR9</h1>
             <div class="rank-badge">ARCHITECT VERIFIED // SYSTEM INTEGRITY OK</div>
         </div>
-
         <div class="grid-data">
             <div class="data-node">
                 <div class="label">Cyber-Security</div>
@@ -59,32 +53,27 @@ h1 { font-size: 2.2rem; font-weight: 100; letter-spacing: 12px; margin: 0; text-
                 <div class="value">MHC-PZD1 Bit-Perfect</div>
             </div>
         </div>
-
         <div class="action-area">
             <a href="https://github.com/urielcabeza2-spec" class="verify-btn" id="btn">INITIALIZE VERIFICATION</a>
         </div>
-
         <div class="signature">
             <div>
                 <div>LUIS URIEL PIMENTEL PÉREZ</div>
-                <div class="glow">0x8F2A...BF92</div>
+                <div class="glow">HASH: 0x8F2A...BF92</div>
             </div>
-            <div id="timestamp">2026.01.26 // 19:12</div>
+            <div id="timestamp">2026.01.26 // 19:13</div>
         </div>
     </div>
 </div>
-
 <script>
 const ctx = new (window.AudioContext || window.webkitAudioContext)();
 const btn = document.getElementById('btn');
 const timeLabel = document.getElementById('timestamp');
-
 function updateTime() {
     const now = new Date();
     timeLabel.innerText = ;
 }
 updateTime();
-
 function playTone() {
     if (ctx.state === 'suspended') ctx.resume();
     const osc = ctx.createOscillator();
@@ -92,15 +81,14 @@ function playTone() {
     osc.type = "sine";
     osc.frequency.setValueAtTime(1000, ctx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.12);
-    g.gain.setValueAtTime(0.1, ctx.currentTime);
+    g.gain.setValueAtTime(0.08, ctx.currentTime);
     g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
     osc.connect(g); g.connect(ctx.destination);
     osc.start(); osc.stop(ctx.currentTime + 0.12);
 }
-
 btn.addEventListener('mousedown', () => {
     playTone();
-    btn.style.letterSpacing = "10px";
+    btn.style.letterSpacing = "8px";
     setTimeout(() => btn.style.letterSpacing = "5px", 200);
 });
 </script>
