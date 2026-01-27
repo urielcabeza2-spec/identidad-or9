@@ -27,6 +27,10 @@ h1 { font-size: 2rem; font-weight: 300; letter-spacing: -1px; margin: 0; }
 .value { font-size: 0.85rem; color: #aaa; margin-top: 4px; }
 .verify-btn { display: inline-block; padding: 12px 35px; border: 1px solid var(--cyan); color: var(--cyan); text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; transition: 0.3s; cursor: pointer; }
 .verify-btn:hover { background: var(--cyan); color: #000; box-shadow: 0 0 25px var(--cyan); }
+        .digital-signature { margin-top: 50px; opacity: 0.4; font-size: 0.5rem; letter-spacing: 1px; }
+        .sig-line { height: 1px; background: linear-gradient(90deg, var(--cyan), transparent); margin-bottom: 10px; width: 50%; }
+        .sig-data { display: flex; justify-content: space-between; color: var(--cyan); }
+        .hash-string { margin-top: 5px; color: #333; }
 .glitch-active { animation: glitch 0.2s linear infinite; color: #ff00c1 !important; }
 @keyframes glitch { 0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); } 80% { transform: translate(2px, -2px); } 100% { transform: translate(0); } }
 </style>
@@ -39,11 +43,22 @@ h1 { font-size: 2rem; font-weight: 300; letter-spacing: -1px; margin: 0; }
 <div class="stat-box"><div class="label">Signal Engine</div><div class="value">MHC-PZD1 <span style="color:var(--cyan)">[BIT-PERFECT]</span></div></div>
 </div>
 <a href="https://github.com/urielcabeza2-spec" class="verify-btn" id="btn">VERIFICAR CREDENCIALES</a>
+        <div class="digital-signature">
+            <div class="sig-line"></div>
+            <div class="sig-data">
+                <span>AUTH_ID: LUPP-OR9-2026</span>
+                <span id="timestamp">LAST_SYNC: LOADING...</span>
+            </div>
+            <div class="hash-string">HASH: 0x8F2A...BF92</div>
+        </div>
 </div>
 <script>
 const ctx = new (window.AudioContext || window.webkitAudioContext)();
 const btn = document.getElementById('btn');
 const nameText = document.getElementById('name');
+        const timeLabel = document.getElementById("timestamp");
+        const now = new Date();
+        timeLabel.innerText = `LAST_SYNC: ${now.getFullYear()}.${(now.getMonth()+1).toString().padStart(2,"0")}.${now.getDate().toString().padStart(2,"0")} | ${now.getHours()}:${now.getMinutes().toString().padStart(2,"0")} CST`;
 function playTacticalSound() { if (ctx.state === 'suspended') ctx.resume(); const osc = ctx.createOscillator(); const g = ctx.createGain(); osc.type = "sine"; osc.frequency.setValueAtTime(800, ctx.currentTime); osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.08); g.gain.setValueAtTime(0.15, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08); osc.connect(g); g.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + 0.08); }
 btn.addEventListener('mousedown', () => { playTacticalSound(); nameText.classList.add('glitch-active'); setTimeout(() => nameText.classList.remove('glitch-active'), 250); });
 </script>
