@@ -13,10 +13,10 @@ h1 { font-size: 1.2rem; letter-spacing: 8px; font-weight: 100; margin-bottom: 30
 .pass-display { background: #000; padding: 20px; font-family: 'JetBrains Mono'; font-size: 1.5rem; letter-spacing: 10px; color: var(--cyan); margin-bottom: 20px; border: 1px solid #222; min-height: 35px; }
 .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .key { background: #0a0a0a; border: 1px solid #222; color: #fff; padding: 20px; font-family: 'JetBrains Mono'; cursor: pointer; transition: 0.2s; }
-.key:hover:not(.disabled) { border-color: var(--cyan); }
-.key:active:not(.disabled) { background: var(--cyan); color: #000; }
-#lock-overlay { display: none; position: absolute; inset: 0; background: rgba(0,0,0,0.95); z-index: 100; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; }
-#timer { font-size: 3rem; color: var(--red); font-family: 'JetBrains Mono'; margin-top: 10px; }
+.key:hover { border-color: var(--cyan); }
+#lock-overlay { display: none; position: absolute; inset: 0; background: rgba(0,0,0,0.98); z-index: 100; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid var(--red); }
+#timer { font-size: 3rem; color: var(--red); font-family: 'JetBrains Mono'; margin-top: 5px; }
+.ip-alert { font-family: 'JetBrains Mono'; font-size: 0.6rem; color: var(--red); opacity: 0.8; margin-top: 20px; text-transform: uppercase; }
 #evidence-room { display: none; margin-top: 20px; padding: 20px; background: #001a10; border: 1px solid var(--cyan); color: var(--cyan); font-family: 'JetBrains Mono'; font-size: 0.7rem; text-align: left; }
 .status-msg { font-size: 0.5rem; letter-spacing: 2px; margin-top: 15px; color: #444; text-transform: uppercase; }
 </style>
@@ -24,9 +24,10 @@ h1 { font-size: 1.2rem; letter-spacing: 8px; font-weight: 100; margin-bottom: 30
 <body onclick="initAudio()">
 <div class="vault-container" id="vault">
     <div id="lock-overlay">
-        <div style="color:var(--red); letter-spacing: 5px; font-size: 0.8rem;">SYSTEM LOCKED</div>
+        <div style="color:var(--red); letter-spacing: 5px; font-size: 0.8rem; font-weight: bold;">SECURITY ALERT</div>
+        <div class="ip-alert" id="ip-display">TRACKING SOURCE...</div>
         <div id="timer">60</div>
-        <div style="font-size: 0.5rem; color: #444; margin-top: 10px;">COOLING DOWN...</div>
+        <div style="font-size: 0.5rem; color: #666; margin-top: 10px; letter-spacing: 2px;">INTRUSION ATTEMPT LOGGED</div>
     </div>
     <h1>SECURE VAULT</h1>
     <div class="pass-display" id="display">****</div>
@@ -53,6 +54,7 @@ const display = document.getElementById('display');
 const status = document.getElementById('status');
 const overlay = document.getElementById('lock-overlay');
 const timerEl = document.getElementById('timer');
+const ipEl = document.getElementById('ip-display');
 let audioCtx;
 
 function initAudio() { if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
@@ -76,25 +78,25 @@ function press(num) {
     }
 }
 
-function clearPass() {
-    input = "";
-    display.innerText = "****";
-}
+function clearPass() { input = ""; display.innerText = "****"; }
 
 function startLockdown() {
+    const fakeIP = `192.168.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}`;
+    ipEl.innerText = `SOURCE_IP: ${fakeIP} [LOGGED]`;
     overlay.style.display = 'flex';
     let timeLeft = 60;
-    playTone(150, 1, 'sawtooth');
+    playTone(150, 0.8, 'sawtooth');
     const interval = setInterval(() => {
         timeLeft--;
         timerEl.innerText = timeLeft;
-        if(timeLeft % 2 === 0) playTone(100, 0.1, 'square');
+        if(timeLeft % 2 === 0) playTone(120, 0.1, 'square');
         if(timeLeft <= 0) {
             clearInterval(interval);
             overlay.style.display = 'none';
             attempts = 3;
             status.innerText = "Attempts Left: 3";
             status.style.color = "#444";
+            clearPass();
         }
     }, 1000);
 }
