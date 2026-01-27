@@ -2,57 +2,66 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>LUPP-OR9 | Secure Vault</title>
+<title>LUPP-OR9 | Hardened Vault</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400&family=JetBrains+Mono:wght@100;400&display=swap');
 :root { --bg: #030303; --cyan: #00ffa3; --red: #ff3e3e; }
 body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
-.vault-container { width: 90%; max-width: 400px; background: #080808; border: 1px solid #111; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
+.vault-container { width: 90%; max-width: 400px; background: #080808; border: 1px solid #111; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8); position: relative; }
 h1 { font-size: 1.2rem; letter-spacing: 8px; font-weight: 100; margin-bottom: 30px; }
 .pass-display { background: #000; padding: 20px; font-family: 'JetBrains Mono'; font-size: 1.5rem; letter-spacing: 10px; color: var(--cyan); margin-bottom: 20px; border: 1px solid #222; min-height: 35px; }
 .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .key { background: #0a0a0a; border: 1px solid #222; color: #fff; padding: 20px; font-family: 'JetBrains Mono'; cursor: pointer; transition: 0.2s; }
-.key:hover { background: #111; border-color: var(--cyan); }
-.key:active { background: var(--cyan); color: #000; }
+.key:hover:not(.disabled) { border-color: var(--cyan); }
+.key:active:not(.disabled) { background: var(--cyan); color: #000; }
+#lock-overlay { display: none; position: absolute; inset: 0; background: rgba(0,0,0,0.95); z-index: 100; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; }
+#timer { font-size: 3rem; color: var(--red); font-family: 'JetBrains Mono'; margin-top: 10px; }
 #evidence-room { display: none; margin-top: 20px; padding: 20px; background: #001a10; border: 1px solid var(--cyan); color: var(--cyan); font-family: 'JetBrains Mono'; font-size: 0.7rem; text-align: left; }
 .status-msg { font-size: 0.5rem; letter-spacing: 2px; margin-top: 15px; color: #444; text-transform: uppercase; }
 </style>
 </head>
 <body onclick="initAudio()">
 <div class="vault-container" id="vault">
+    <div id="lock-overlay">
+        <div style="color:var(--red); letter-spacing: 5px; font-size: 0.8rem;">SYSTEM LOCKED</div>
+        <div id="timer">60</div>
+        <div style="font-size: 0.5rem; color: #444; margin-top: 10px;">COOLING DOWN...</div>
+    </div>
     <h1>SECURE VAULT</h1>
     <div class="pass-display" id="display">****</div>
-    <div class="keypad">
+    <div class="keypad" id="keypad">
         <div class="key" onclick="press(1)">1</div><div class="key" onclick="press(2)">2</div><div class="key" onclick="press(3)">3</div>
         <div class="key" onclick="press(4)">4</div><div class="key" onclick="press(5)">5</div><div class="key" onclick="press(6)">6</div>
         <div class="key" onclick="press(7)">7</div><div class="key" onclick="press(8)">8</div><div class="key" onclick="press(9)">9</div>
         <div class="key" onclick="clearPass()" style="color:var(--red)">C</div><div class="key" onclick="press(0)">0</div><div class="key" onclick="verify()" style="color:var(--cyan)">E</div>
     </div>
-    <div class="status-msg" id="status">Awaiting Authorization...</div>
+    <div class="status-msg" id="status">Attempts Left: 3</div>
     <div id="evidence-room">
         > ACCESS GRANTED.<br>
-        > REPORT: CVE-2026-0322<br>
-        > TARGET: KERNEL_MEMORY_LEAK<br>
-        > STATUS: EVIDENCE_LOCKED_OR9<br>
-        > BIT-PERFECT SONY ENGINE: ACTIVE
+        > REPORT: CVE-2026-0322 (MEMORY CORRUPTION)<br>
+        > MITIGATION: HARDENED_KERNEL_B64<br>
+        > ARCHITECT: LUIS URIEL PIMENTEL PÉREZ
     </div>
 </div>
 
 <script>
 let input = "";
-const masterCode = "2026"; // TU CÓDIGO DE ACCESO
+let attempts = 3;
+const masterCode = "2026";
 const display = document.getElementById('display');
 const status = document.getElementById('status');
-const room = document.getElementById('evidence-room');
+const overlay = document.getElementById('lock-overlay');
+const timerEl = document.getElementById('timer');
 let audioCtx;
 
 function initAudio() { if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
 
-function playTone(freq, dur) {
+function playTone(freq, dur, type='sine') {
     if(!audioCtx) return;
     const osc = audioCtx.createOscillator();
     const g = audioCtx.createGain();
+    osc.type = type;
     osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
     g.gain.setValueAtTime(0.1, audioCtx.currentTime);
     osc.connect(g); g.connect(audioCtx.destination);
@@ -70,22 +79,44 @@ function press(num) {
 function clearPass() {
     input = "";
     display.innerText = "****";
-    playTone(300, 0.1);
+}
+
+function startLockdown() {
+    overlay.style.display = 'flex';
+    let timeLeft = 60;
+    playTone(150, 1, 'sawtooth');
+    const interval = setInterval(() => {
+        timeLeft--;
+        timerEl.innerText = timeLeft;
+        if(timeLeft % 2 === 0) playTone(100, 0.1, 'square');
+        if(timeLeft <= 0) {
+            clearInterval(interval);
+            overlay.style.display = 'none';
+            attempts = 3;
+            status.innerText = "Attempts Left: 3";
+            status.style.color = "#444";
+        }
+    }, 1000);
 }
 
 function verify() {
     if(input === masterCode) {
-        status.innerText = "Access Authorized";
+        status.innerText = "Authorized";
         status.style.color = "var(--cyan)";
-        playTone(1200, 0.3);
-        document.querySelector('.keypad').style.display = 'none';
+        playTone(1200, 0.4);
+        document.getElementById('keypad').style.display = 'none';
         display.style.display = 'none';
-        room.style.display = 'block';
+        document.getElementById('evidence-room').style.display = 'block';
     } else {
-        status.innerText = "Access Denied - System Locked";
-        status.style.color = "var(--red)";
-        playTone(200, 0.5);
-        clearPass();
+        attempts--;
+        playTone(200, 0.5, 'square');
+        if(attempts <= 0) {
+            startLockdown();
+        } else {
+            status.innerText = "Access Denied. Attempts Left: " + attempts;
+            status.style.color = "var(--red)";
+            clearPass();
+        }
     }
 }
 </script>
