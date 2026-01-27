@@ -3,42 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' fonts.googleapis.com fonts.gstatic.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; script-src 'self' 'unsafe-inline';">
-<title>LUPP-OR9 | Disruptive Cyber-Ecosystem</title>
+<title>LUPP-OR9 | Secure Infrastructure</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&family=JetBrains+Mono:wght@100;400&display=swap');
 :root { --bg: #010101; --cyan: #00ffa3; --red: #ff3e3e; --violet: #bc13fe; --gray: #1a1a1a; }
 body { background: var(--bg); color: #fff; font-family: 'JetBrains Mono', monospace; margin: 0; padding: 20px; font-size: 0.7rem; }
 .dashboard { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; max-width: 1200px; margin: 0 auto; }
-
-/* Panel de Control Estilo SOC */
-.panel { border: 1px solid var(--gray); background: #000; padding: 20px; position: relative; overflow: hidden; }
+.panel { border: 1px solid var(--gray); background: #000; padding: 20px; position: relative; }
 .panel-header { color: var(--cyan); border-bottom: 1px solid var(--gray); padding-bottom: 10px; margin-bottom: 15px; font-weight: bold; letter-spacing: 2px; }
-
-/* Quantum Auth */
-.auth-box { text-align: center; }
-.q-display { background: #050505; border: 1px solid var(--violet); padding: 15px; color: var(--violet); margin-bottom: 15px; font-size: 0.9rem; min-height: 25px; }
+.auth-box { text-align: center; width: 250px; }
+.q-display { background: #050505; border: 1px solid var(--violet); padding: 15px; color: var(--violet); margin-bottom: 15px; font-size: 0.9rem; }
 .q-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
 .q-btn { border: 1px solid var(--gray); padding: 15px; cursor: pointer; transition: 0.2s; background: #080808; color: #fff; }
 .q-btn:hover { background: var(--violet); color: #000; }
-
-/* Real-time Logs */
-.log-stream { height: 200px; overflow-y: hidden; color: #444; font-size: 0.6rem; line-height: 1.4; }
-.log-entry { margin-bottom: 4px; }
-.log-entry.success { color: var(--cyan); }
-.log-entry.warn { color: var(--red); }
-
-/* Identity & Certs */
+.log-stream { height: 180px; overflow: hidden; color: #444; font-size: 0.6rem; }
 .cert-badge { border: 1px solid var(--cyan); padding: 5px 10px; display: inline-block; margin: 5px; font-size: 0.5rem; color: var(--cyan); }
 
-#lock-screen { display: none; position: fixed; inset: 0; background: #000; z-index: 1000; flex-direction: column; align-items: center; justify-content: center; }
-#main-content { opacity: 0.3; pointer-events: none; transition: 0.5s; }
+/* Blindaje Legal Footer */
+.legal-disclaimer { margin-top: 30px; padding: 15px; border-top: 1px solid #111; font-size: 0.55rem; color: #333; line-height: 1.5; text-align: justify; }
+.legal-tag { color: #555; font-weight: bold; }
+
+#lock-screen { display: flex; position: fixed; inset: 0; background: #000; z-index: 1000; flex-direction: column; align-items: center; justify-content: center; }
+#main-content { opacity: 0.1; pointer-events: none; transition: 0.5s; }
 </style>
 </head>
 <body onclick="a()">
 <div id="lock-screen">
-    <div style="color:var(--violet); letter-spacing: 10px; font-size: 1rem; margin-bottom: 20px;">LUPP-OR9 // PQC GATEWAY</div>
-    <div class="auth-box" style="width: 250px;">
+    <div style="color:var(--violet); letter-spacing: 10px; font-size: 1rem; margin-bottom: 20px;">LUPP-OR9 // ENTRANCE</div>
+    <div class="auth-box">
         <div class="q-display" id="d">----</div>
         <div class="q-grid">
             <script>for(let i=1;i<=9;i++)document.write(`<div class="q-btn" onclick="p('${i}')">${i}</div>`);</script>
@@ -49,77 +42,50 @@ body { background: var(--bg); color: #fff; font-family: 'JetBrains Mono', monosp
 
 <div class="dashboard" id="main-content">
     <div class="panel">
-        <div class="panel-header">DISRUPTIVE IDENTITY (DID)</div>
-        <div>ID: <span class="cyan">did:lupp:or9:2026:post-quantum</span></div>
-        <div style="margin-top:20px">
+        <div class="panel-header">IDENTITY DID</div>
+        <div>ID: <span class="cyan">did:lupp:or9:sha256:pqc</span></div>
+        <div style="margin-top:15px">
             <div class="cert-badge">ISO-27001 ALIGNED</div>
-            <div class="cert-badge">NIST-PQC COMPLIANT</div>
-            <div class="cert-badge">SOC2-READY</div>
+            <div class="cert-badge">PQC-NIST READY</div>
         </div>
-        <div class="panel-header" style="margin-top:30px">SYSTEM RESILIENCE</div>
-        <div id="resilience-stats">
-            NODE-01: [ONLINE]<br>
-            NODE-02: [SYNCING]<br>
-            HEALER: [ACTIVE]
-        </div>
+        <div class="panel-header" style="margin-top:25px">RESILIENCE STATE</div>
+        <div style="color:#666">AUTONOMOUS_MODE: ACTIVE<br>HEALTH_CHECK: 100%</div>
     </div>
-
     <div class="panel">
-        <div class="panel-header">THREAT INTELLIGENCE (REAL-TIME LOGS)</div>
+        <div class="panel-header">THREAT INTEL / LOGS</div>
         <div class="log-stream" id="logs"></div>
+    </div>
+    <div class="legal-disclaimer">
+        <span class="legal-tag">[AVISO LEGAL / DISCLAIMER]</span><br>
+        Este nodo (identidad-or9 / LUPP-OR9) es un Entorno de Demostración Técnica y Prueba de Concepto (PoC). Los protocolos de Criptografía Post-Cuántica (PQC) e Identidad Descentralizada (DID) presentados tienen fines exclusivamente de investigación y exhibición de arquitectura. No se realiza recolección de datos personales identificables conforme a GDPR y LFPDPPP. El autor no se hace responsable del uso externo de la información técnica aquí contenida. Arquitectura y metodología propiedad intelectual de LUPP-OR9.
     </div>
 </div>
 
 <script>
-let i="", att=0, ctx, lk=true;
+let i="", att=0, ctx;
 const H="9B8F25F690B4C697B12C217DB1F7B4810757C8A977B5474CC053155106AF8072";
-
 function a(){if(!ctx)ctx=new(window.AudioContext||window.webkitAudioContext)();}
 function s(f,d,t='sine'){if(!ctx)return;let o=ctx.createOscillator(),g=ctx.createGain();o.type=t;o.frequency.value=f;g.gain.value=0.05;o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+d);}
-
 function p(n){if(i.length<4){i+=n;document.getElementById('d').innerText='*'.repeat(i.length);s(1000,0.05);}}
 function c(){i="";document.getElementById('d').innerText='----';s(200,0.1);}
-
 async function v(){
-    const m=new TextEncoder().encode(i);
-    const b=await crypto.subtle.digest('SHA-256',m);
-    const res=Array.from(new Uint8Array(b)).map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
-    
-    if(res===H){
-        s(1500,0.3);
-        document.getElementById('lock-screen').style.display='none';
+    const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(i));
+    if(Array.from(new Uint8Array(b)).map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase()===H){
+        s(1500,0.3); document.getElementById('lock-screen').style.display='none';
         document.getElementById('main-content').style.opacity='1';
         document.getElementById('main-content').style.pointerEvents='all';
         startLogs();
-    } else {
-        att++; s(100,0.5,'sawtooth');
-        if(att>=3) location.reload();
-        else c();
-    }
+    } else { att++; s(100,0.5,'sawtooth'); if(att>=3)location.reload(); else c(); }
 }
-
 function startLogs(){
-    const logs = [
-        "Initializing CRYSTALS-Kyber key exchange...",
-        "Validating DID credentials with W3C standard...",
-        "Scanning kernel buffers for CVE-2026-0322...",
-        "Self-healing: Node-02 failover successful.",
-        "AI-Prediction: Zero-day threat mitigated (99.8%)",
-        "Audit trail logged to immutable blockchain.",
-        "ISO-27001 Compliance Check: 100% Secure."
-    ];
-    const el = document.getElementById('logs');
-    setInterval(() => {
-        const line = document.createElement('div');
-        line.className = 'log-entry' + (Math.random()>0.8?' success':'');
-        line.innerText = `[${new Date().toLocaleTimeString()}] ${logs[Math.floor(Math.random()*logs.length)]}`;
-        el.prepend(line);
-        if(el.children.length > 15) el.lastChild.remove();
-    }, 2000);
+    const l=["PQC: Kyber key-exchange stable.","DID: Verifying signature... OK.","Self-healing: Buffer reset.","Audit: ISO-27001 scan complete.","Resilience: Node stable."];
+    const el=document.getElementById('logs');
+    setInterval(()=>{
+        const d=document.createElement('div');
+        d.innerText=`[${new Date().toLocaleTimeString()}] ${l[Math.floor(Math.random()*l.length)]}`;
+        el.prepend(d); if(el.children.length>10)el.lastChild.remove();
+    },2500);
 }
-
-// Mostrar lock screen al inicio
-document.getElementById('lock-screen').style.display='flex';
 </script>
 </body>
 </html>
