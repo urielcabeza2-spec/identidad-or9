@@ -2,146 +2,93 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>LUPP-OR9 | Hardened Vault</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' fonts.googleapis.com fonts.gstatic.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; script-src 'self' 'unsafe-inline';">
+<title>LUPP-OR9 | Hardened Infrastructure</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400&family=JetBrains+Mono:wght@100;400&display=swap');
-:root { --bg: #030303; --cyan: #00ffa3; --red: #ff3e3e; }
-body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
-.vault-container { width: 90%; max-width: 400px; background: #080808; border: 1px solid #111; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8); position: relative; }
-
-/* El nombre ahora es tu Llave Maestra */
-.master-header { font-size: 1.2rem; letter-spacing: 8px; font-weight: 100; margin-bottom: 30px; cursor: default; user-select: none; transition: 0.3s; }
-.master-header:active { color: var(--cyan); opacity: 0.5; }
-
-.pass-display { background: #000; padding: 20px; font-family: 'JetBrains Mono'; font-size: 1.5rem; letter-spacing: 10px; color: var(--cyan); margin-bottom: 20px; border: 1px solid #222; min-height: 35px; }
-.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.key { background: #0a0a0a; border: 1px solid #222; color: #fff; padding: 20px; font-family: 'JetBrains Mono'; cursor: pointer; transition: 0.2s; }
-.key:hover { border-color: var(--cyan); }
-
-#lock-overlay { display: none; position: absolute; inset: 0; background: rgba(0,0,0,0.98); z-index: 100; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid var(--red); }
-#timer { font-size: 3rem; color: var(--red); font-family: 'JetBrains Mono'; margin-top: 5px; }
-.ip-alert { font-family: 'JetBrains Mono'; font-size: 0.6rem; color: var(--red); opacity: 0.8; margin-top: 20px; text-transform: uppercase; }
-
-#evidence-room { display: none; margin-top: 20px; padding: 20px; background: #001a10; border: 1px solid var(--cyan); color: var(--cyan); font-family: 'JetBrains Mono'; font-size: 0.7rem; text-align: left; }
-.status-msg { font-size: 0.5rem; letter-spacing: 2px; margin-top: 15px; color: #444; text-transform: uppercase; }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400&family=JetBrains+Mono:wght@100&display=swap');
+:root { --bg: #050505; --cyan: #00ffa3; --red: #ff3e3e; }
+body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.vault-container { width: 90%; max-width: 400px; background: #000; border: 1px solid #151515; padding: 40px; border-radius: 4px; position: relative; }
+.header { border-bottom: 1px solid #151515; padding-bottom: 20px; margin-bottom: 30px; }
+h1 { font-size: 1rem; letter-spacing: 6px; font-weight: 400; color: #fff; margin: 0; }
+.display { background: #080808; border: 1px solid #1a1a1a; padding: 25px; font-family: 'JetBrains Mono'; font-size: 1.2rem; text-align: center; color: var(--cyan); letter-spacing: 8px; margin-bottom: 25px; }
+.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.btn { background: #0a0a0a; border: 1px solid #1a1a1a; color: #fff; padding: 18px; font-family: 'JetBrains Mono'; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+.btn:hover { background: #111; border-color: #333; }
+.btn:active { background: var(--cyan); color: #000; transform: scale(0.95); }
+#overlay { display: none; position: absolute; inset: 0; background: #000; z-index: 10; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--red); }
+#response { margin-top: 20px; font-family: 'JetBrains Mono'; font-size: 0.6rem; color: #444; text-transform: uppercase; }
+.content-area { display: none; text-align: left; font-family: 'JetBrains Mono'; font-size: 0.7rem; line-height: 1.6; }
+.cyan { color: var(--cyan); }
 </style>
 </head>
-<body onclick="initAudio()">
-<div class="vault-container" id="vault">
-    <div id="lock-overlay">
-        <div style="color:var(--red); letter-spacing: 5px; font-size: 0.8rem; font-weight: bold;">SECURITY ALERT</div>
-        <div class="ip-alert" id="ip-display">TRACKING SOURCE...</div>
-        <div id="timer">60</div>
-        <div style="font-size: 0.5rem; color: #666; margin-top: 10px; letter-spacing: 2px;">INTRUSION ATTEMPT LOGGED</div>
+<body onclick="aInit()">
+<div class="vault-container">
+    <div id="overlay">
+        <div style="color:var(--red); letter-spacing: 4px; font-size: 0.7rem;">LOCKDOWN ACTIVE</div>
+        <div id="timer" style="font-size: 2.5rem; color: var(--red); font-family: 'JetBrains Mono';">60</div>
     </div>
     
-    <h1 class="master-header" onclick="masterReset()">LUPP — OR9</h1>
-    
-    <div class="pass-display" id="display">****</div>
-    <div class="keypad" id="keypad">
-        <div class="key" onclick="press(1)">1</div><div class="key" onclick="press(2)">2</div><div class="key" onclick="press(3)">3</div>
-        <div class="key" onclick="press(4)">4</div><div class="key" onclick="press(5)">5</div><div class="key" onclick="press(6)">6</div>
-        <div class="key" onclick="press(7)">7</div><div class="key" onclick="press(8)">8</div><div class="key" onclick="press(9)">9</div>
-        <div class="key" onclick="clearPass()" style="color:var(--red)">C</div><div class="key" onclick="press(0)">0</div><div class="key" onclick="verify()" style="color:var(--cyan)">E</div>
+    <div id="main-ui">
+        <div class="header"><h1>LUPP // OR9-NODE</h1></div>
+        <div class="display" id="d">****</div>
+        <div class="keypad">
+            <script>
+                for(let i=1;i<=9;i++) document.write(`<div class="btn" onclick="p('${i}')">${i}</div>`);
+            </script>
+            <div class="btn" onclick="c()" style="color:var(--red)">CLR</div>
+            <div class="btn" onclick="p('0')">0</div>
+            <div class="btn" onclick="v()" style="color:var(--cyan)">ENT</div>
+        </div>
+        <div id="response">Waiting for credentials...</div>
     </div>
-    <div class="status-msg" id="status">Attempts Left: 3</div>
-    
-    <div id="evidence-room">
-        > ACCESS GRANTED.<br>
-        > REPORT: CVE-2026-0322 (MEMORY CORRUPTION)<br>
-        > MITIGATION: HARDENED_KERNEL_B64<br>
-        > ARCHITECT: LUIS URIEL PIMENTEL PÉREZ
+
+    <div id="evidence" class="content-area">
+        <span class="cyan">> ARCHITECT IDENTITY VERIFIED</span><br>
+        > ROLE: INFRASTRUCTURE & VRP RESEARCHER<br>
+        > NODE: LUPP-OR9 [STABLE]<br>
+        > ENCRYPTION: AES-GCM 256-BIT<br><br>
+        <span class="cyan">> SECURITY PROTOCOL 2026 ACTIVE</span>
     </div>
 </div>
 
 <script>
-let input = "";
-let attempts = 3;
-let lockInterval;
-const masterCode = "2026";
-const display = document.getElementById('display');
-const status = document.getElementById('status');
-const overlay = document.getElementById('lock-overlay');
-const timerEl = document.getElementById('timer');
-const ipEl = document.getElementById('ip-display');
-let audioCtx;
+let i="", attempts=0, a;
+// HASH REAL DE '2026' - No se puede revertir a texto plano
+const TARGET = "9B8F25F690B4C697B12C217DB1F7B4810757C8A977B5474CC053155106AF8072";
 
-function initAudio() { if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
-
-function playTone(freq, dur, type='sine') {
-    if(!audioCtx) return;
-    const osc = audioCtx.createOscillator();
-    const g = audioCtx.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-    g.gain.setValueAtTime(0.1, audioCtx.currentTime);
-    osc.connect(g); g.connect(audioCtx.destination);
-    osc.start(); osc.stop(audioCtx.currentTime + dur);
+async function h(s) {
+    const m = new TextEncoder().encode(s);
+    const b = await crypto.subtle.digest('SHA-256', m);
+    return Array.from(new Uint8Array(b)).map(b => b.toString(16).padStart(2,'0')).join('').toUpperCase();
 }
 
-// TU LLAVE MAESTRA SECRETA
-function masterReset() {
-    if(overlay.style.display === 'flex') {
-        clearInterval(lockInterval);
-        overlay.style.display = 'none';
-        attempts = 3;
-        status.innerText = "Master Override Active";
-        status.style.color = "var(--cyan)";
-        playTone(1500, 0.1);
-        setTimeout(() => playTone(2000, 0.1), 100);
-        clearPass();
-    }
-}
+function aInit() { if(!a) a=new(window.AudioContext||window.webkitAudioContext)(); }
+function s(f,d) { if(!a) return; let o=a.createOscillator(), g=a.createGain(); o.frequency.value=f; g.gain.value=0.1; o.connect(g); g.connect(a.destination); o.start(); o.stop(a.currentTime+d); }
 
-function press(num) {
-    if(input.length < 4) {
-        input += num;
-        display.innerText = "*".repeat(input.length);
-        playTone(800, 0.05);
-    }
-}
+function p(n) { if(i.length<4){ i+=n; document.getElementById('d').innerText='*'.repeat(i.length); s(800,0.05); } }
+function c() { i=""; document.getElementById('d').innerText='****'; s(300,0.1); }
 
-function clearPass() { input = ""; display.innerText = "****"; }
-
-function startLockdown() {
-    const fakeIP = `192.168.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}`;
-    ipEl.innerText = `SOURCE_IP: ${fakeIP} [LOGGED]`;
-    overlay.style.display = 'flex';
-    let timeLeft = 60;
-    playTone(150, 0.8, 'sawtooth');
-    lockInterval = setInterval(() => {
-        timeLeft--;
-        timerEl.innerText = timeLeft;
-        if(timeLeft % 2 === 0) playTone(120, 0.1, 'square');
-        if(timeLeft <= 0) {
-            clearInterval(lockInterval);
-            overlay.style.display = 'none';
-            attempts = 3;
-            status.innerText = "Attempts Left: 3";
-            status.style.color = "#444";
-            clearPass();
-        }
-    }, 1000);
-}
-
-function verify() {
-    if(input === masterCode) {
-        status.innerText = "Authorized";
-        status.style.color = "var(--cyan)";
-        playTone(1200, 0.4);
-        document.getElementById('keypad').style.display = 'none';
-        display.style.display = 'none';
-        document.getElementById('evidence-room').style.display = 'block';
+async function v() {
+    const currentHash = await h(i);
+    if(currentHash === TARGET) {
+        s(1200, 0.3);
+        document.getElementById('main-ui').style.display='none';
+        document.getElementById('evidence').style.display='block';
     } else {
-        attempts--;
-        playTone(200, 0.5, 'square');
-        if(attempts <= 0) {
-            startLockdown();
+        attempts++;
+        s(150, 0.5);
+        if(attempts >= 3) {
+            document.getElementById('overlay').style.display='flex';
+            let t=60;
+            const iv = setInterval(() => {
+                t--; document.getElementById('timer').innerText=t;
+                if(t<=0){ clearInterval(iv); location.reload(); }
+            }, 1000);
         } else {
-            status.innerText = "Access Denied. Attempts Left: " + attempts;
-            status.style.color = "var(--red)";
-            clearPass();
+            document.getElementById('response').innerText = `Access Denied (${3-attempts} left)`;
+            c();
         }
     }
 }
