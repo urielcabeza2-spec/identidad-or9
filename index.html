@@ -2,86 +2,78 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>LUPP-OR9 | Luis Uriel Pimentel Pérez</title>
-<meta property="og:title" content="LUIS URIEL PIMENTEL PÉREZ — ARCHITECT" />
-<meta property="og:image" content="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=630" />
+<title>LUPP-OR9 | Architecture & Security</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/9333/9333918.png">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&family=JetBrains+Mono:wght@100;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400&family=JetBrains+Mono:wght@100&display=swap');
 :root { --bg: #030303; --cyan: #00ffa3; }
-body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; min-height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center; overflow-x: hidden; cursor: crosshair; }
-.main-frame { z-index: 10; width: 90%; max-width: 850px; padding: 1px; background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent); border-radius: 12px; }
-.content { background: #080808; border-radius: 11px; padding: 40px; position: relative; text-align: center; }
-h1 { font-size: 2rem; font-weight: 100; letter-spacing: 10px; margin: 0; text-transform: uppercase; }
-.rank-badge { display: inline-block; margin: 15px auto; background: rgba(0, 255, 163, 0.05); border: 1px solid var(--cyan); color: var(--cyan); font-family: 'JetBrains Mono'; font-size: 0.5rem; padding: 4px 12px; letter-spacing: 3px; border-radius: 100px; }
-.audio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; }
-.audio-card { background: #0a0a0a; padding: 15px; border: 1px solid rgba(255,255,255,0.02); }
-.audio-card .val { color: var(--cyan); font-family: 'JetBrains Mono'; font-size: 0.8rem; display: block; }
-.audio-card .lab { font-size: 0.45rem; color: #555; text-transform: uppercase; }
-#terminal { display: none; background: #000; border: 1px solid #222; margin-top: 30px; padding: 20px; font-family: 'JetBrains Mono'; font-size: 0.65rem; color: #00ff41; height: 120px; overflow: hidden; text-align: left; }
-.verify-btn { display: block; width: fit-content; margin: 40px auto; padding: 18px 50px; background: #fff; color: #000; text-decoration: none; font-size: 0.65rem; font-weight: 700; letter-spacing: 4px; border-radius: 2px; transition: 0.3s; cursor: pointer; border: none; }
-.verify-btn:hover { background: var(--cyan); box-shadow: 0 0 30px rgba(0, 255, 163, 0.4); transform: scale(1.05); }
-.signature { margin-top: 50px; display: flex; justify-content: space-between; opacity: 0.2; font-family: 'JetBrains Mono'; font-size: 0.4rem; letter-spacing: 2px; }
+body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+.container { width: 100%; max-width: 800px; background: #080808; border: 1px solid #111; padding: 40px; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+h1 { font-size: 1.5rem; letter-spacing: 10px; font-weight: 100; text-align: center; color: var(--cyan); }
+.section-title { font-size: 0.6rem; letter-spacing: 4px; color: #444; text-transform: uppercase; margin: 40px 0 20px; border-bottom: 1px solid #111; padding-bottom: 10px; }
+
+/* Terminal Criptográfica */
+#crypto-terminal { background: #000; padding: 20px; font-family: 'JetBrains Mono'; font-size: 0.7rem; border: 1px solid #222; }
+input { background: transparent; border: none; border-bottom: 1px solid #333; color: var(--cyan); width: 100%; outline: none; padding: 10px 0; margin-bottom: 10px; font-family: 'JetBrains Mono'; }
+.hash-result { color: #888; word-break: break-all; }
+
+/* Arquitectura UML Simbolizada */
+.arch-box { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; font-size: 0.5rem; text-align: center; font-family: 'JetBrains Mono'; }
+.node { border: 1px solid #333; padding: 10px; opacity: 0.6; }
+
+.verify-btn { display: block; width: 100%; padding: 15px; background: #fff; color: #000; border: none; letter-spacing: 5px; font-weight: 700; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+.verify-btn:hover { background: var(--cyan); }
 </style>
 </head>
-<body onclick="initAudio()">
-<div class="main-frame">
-    <div class="content">
-        <h1>LUPP — OR9</h1>
-        <div class="rank-badge">ARCHITECT VERIFIED // BIT-PERFECT READY</div>
-        <div class="audio-grid">
-            <div class="audio-card"><span class="val">24-BIT</span><span class="lab">Precision</span></div>
-            <div class="audio-card"><span class="val">192KHZ</span><span class="lab">MHC-PZD1</span></div>
-            <div class="audio-card"><span class="val">BIT-P</span><span class="lab">Status</span></div>
-        </div>
-        <div id="terminal"></div>
-        <button class="verify-btn" id="btn">INITIALIZE CORE SCAN</button>
-        <div class="signature">
-            <div>LUIS URIEL PIMENTEL PÉREZ<br>HASH: 0x8F2A...BF92</div>
-            <div id="timestamp">2026.01.26</div>
-        </div>
+<body>
+<div class="container">
+    <h1>LUPP — OR9</h1>
+    
+    <div class="section-title">Cryptographic Module (SHA-256)</div>
+    <div id="crypto-terminal">
+        <input type="text" id="cryptoInput" placeholder="Enter string for secure hashing..." oninput="generateHash()">
+        <div class="hash-result" id="hashOutput">HASH: [WAITING FOR INPUT]</div>
     </div>
+
+    <div class="section-title">System Architecture (UML-Bypass)</div>
+    <div class="arch-box">
+        <div class="node">FRONTEND<br>(STATIC-APP)</div>
+        <div class="node">SECURITY<br>(AES-256-SIM)</div>
+        <div class="node">DEPLOY<br>(DOCKER)</div>
+    </div>
+
+    <div class="section-title">Audio & Integrity</div>
+    <div style="font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #666; text-align: center;">
+        STATUS: BIT-PERFECT SONY MHC-PZD1 // SYNC: OK
+    </div>
+
+    <button class="verify-btn" onclick="playBeep()">VERIFY ARCHITECTURE</button>
 </div>
+
 <script>
-let ctx;
-function initAudio() {
-    if (!ctx) {
-        ctx = new (window.AudioContext || window.webkitAudioContext)();
-        console.log("Audio Engine Initialized");
-    }
-}
-const btn = document.getElementById('btn');
-const term = document.getElementById('terminal');
-const logLines = ["> CONNECTING...", "> MHC-PZD1 DETECTED", "> GAIN OPTIMIZED", "> ACCESS GRANTED"];
-
-function playTone() {
-    if (!ctx) initAudio();
-    if (ctx.state === 'suspended') ctx.resume();
-    const osc = ctx.createOscillator();
-    const g = ctx.createGain();
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(1200, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.4);
-    g.gain.setValueAtTime(0.5, ctx.currentTime); // VOLUMEN ALTO (0.5)
-    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
-    osc.connect(g); g.connect(ctx.destination);
-    osc.start(); osc.stop(ctx.currentTime + 0.4);
+async function generateHash() {
+    const msg = document.getElementById('cryptoInput').value;
+    if(!msg) return;
+    const msgUint8 = new TextEncoder().encode(msg);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    document.getElementById('hashOutput').innerText = 'SHA-256: ' + hashHex.toUpperCase();
 }
 
-btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    playTone();
-    term.style.display = 'block';
-    term.innerHTML = '';
-    logLines.forEach((line, i) => {
-        setTimeout(() => {
-            const d = document.createElement('div');
-            d.innerText = line;
-            term.appendChild(d);
-        }, i * 500);
-    });
-});
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+function playBeep() {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(1000, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.2);
+    gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+}
 </script>
 </body>
 </html>
