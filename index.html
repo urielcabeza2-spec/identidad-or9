@@ -4,65 +4,40 @@
     <meta name="google-site-verification" content="HPPzyk2d6f6mEP5b0vrxjTduA5PEA5U_1DaSxmsH2W8" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUPP-OR9 | ARCHITECT ID</title>
+    <title>LUPP-OR9 | ARCHITECT</title>
     <style>
-        :root { --bg: #000; --v: #bc13fe; --c: #00ffa3; }
-        body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
-        .v-box { border: 1px solid #222; padding: 25px; text-align: center; background: #050505; width: 280px; }
-        .d { background: #000; border: 1px solid var(--v); padding: 10px; color: var(--v); margin-bottom: 20px; font-size: 1.5rem; letter-spacing: 5px; height: 35px; }
-        .g { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        .b { border: 1px solid #333; padding: 12px; cursor: pointer; background: #0a0a0a; color: #fff; font-size: 1.1rem; }
-        .b:active { background: var(--v); color: #000; }
-
-        /* LA TARJETA DE LUIS URIEL */
-        #id-card { display: none; width: 320px; background: #080808; border: 2px solid var(--c); padding: 20px; border-radius: 12px; position: relative; box-shadow: 0 0 25px rgba(0,255,163,0.2); }
-        .banner { position: absolute; top: 12px; right: -25px; background: var(--c); color: #000; font-size: 0.5rem; font-weight: bold; padding: 3px 30px; transform: rotate(45deg); }
-        .photo { width: 60px; height: 60px; border: 1px solid var(--c); float: left; margin-right: 15px; background: #001500; display: flex; align-items: center; justify-content: center; color: var(--c); font-weight: bold; }
-        .details { font-size: 0.75rem; line-height: 1.5; }
-        .details b { color: var(--c); }
-        .pill { display: inline-block; border: 1px solid var(--c); color: var(--c); padding: 2px 8px; font-size: 0.55rem; border-radius: 10px; margin-top: 10px; text-transform: uppercase; }
+        body { background: #000; color: #00ffa3; font-family: monospace; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .card { border: 2px solid #00ffa3; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 0 20px #00ffa344; width: 300px; }
+        input { background: #000; border: 1px solid #bc13fe; color: #fff; padding: 10px; width: 80%; text-align: center; font-size: 1.2rem; margin: 10px 0; }
+        button { background: #bc13fe; border: none; padding: 10px 20px; color: #fff; font-weight: bold; cursor: pointer; width: 90%; }
+        #id-view { display: none; }
     </style>
 </head>
 <body>
-
-<div id="lock" class="v-box">
-    <div style="color:var(--v); font-size: 0.6rem; letter-spacing: 2px; margin-bottom: 15px;">LUPP-OR9 GATEWAY v2.6</div>
-    <div class="d" id="disp">----</div>
-    <div class="g">
-        <script>for(let i=1;i<=9;i++)document.write(`<div class="b" onclick="p('${i}')">${i}</div>`);</script>
-        <div class="b" onclick="clr()" style="color:red">C</div><div class="b" onclick="p('0')">0</div><div class="b" onclick="val()" style="color:var(--c)">ENT</div>
+    <div id="login-view" class="card">
+        <h3 style="color:#bc13fe">LUPP-OR9 ACCESS</h3>
+        <input type="tel" id="code" placeholder="PIN" maxlength="4">
+        <button onclick="check()">ENTRAR</button>
     </div>
-</div>
 
-<div id="id-card">
-    <div class="banner">VERIFIED</div>
-    <div class="photo">LU</div>
-    <div class="details">
-        <b>NAME:</b> Luis Uriel Pimentel Pérez<br>
-        <b>RANK:</b> Infrastructure Architect<br>
-        <b>NODE:</b> LUPP-OR9 / PQC<br>
-        <b>STATUS:</b> <span style="color:var(--c)">AUTHORIZED</span>
+    <div id="id-view" class="card">
+        <h2 style="margin:0">ID VERIFICADA</h2>
+        <hr border="1" color="#00ffa3">
+        <p><b>ARQUITECTO:</b><br>Luis Uriel Pimentel Pérez</p>
+        <p style="font-size:0.7rem;">STATUS: GOOGLE PROPERTY ACTIVE</p>
+        <div style="background:#002200; padding:5px; font-size:0.6rem;">SITEMAP: INDEXED</div>
     </div>
-    <div style="clear:both;"></div>
-    <center><div class="pill">Google Property Verified</div></center>
-    <div style="margin-top:15px; font-size:0.45rem; color:#444; border-top:1px solid #222; pt:5px;">
-        SIGNATURE: 9B8F25F690B4...[ACTIVE]
-    </div>
-</div>
 
-<script>
-let i="";
-const TARGET = "9B8F25F690B4C697B12C217DB1F7B4810757C8A977B5474CC053155106AF8072";
-function p(n){ if(i.length < 4){ i += n; document.getElementById('disp').innerText = '*'.repeat(i.length); } }
-function clr(){ i = ""; document.getElementById('disp').innerText = "----"; }
-async function val(){
-    const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(i));
-    const h = Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('').toUpperCase();
-    if(h === TARGET){
-        document.getElementById('lock').style.display = 'none';
-        document.getElementById('id-card').style.display = 'block';
-    } else { alert("CODE ERROR"); clr(); }
-}
-</script>
+    <script>
+        function check() {
+            const val = document.getElementById('code').value;
+            if(val === "2026") {
+                document.getElementById('login-view').style.display = 'none';
+                document.getElementById('id-view').style.display = 'block';
+            } else {
+                alert("CÓDIGO INVÁLIDO");
+            }
+        }
+    </script>
 </body>
 </html>
