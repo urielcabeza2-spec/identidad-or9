@@ -1,77 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>LUPP-OR9 | Luis Uriel Pimentel Pérez</title>
-    <meta property="fb:app_id" content="966242223397117" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://urielcabeza2-spec.github.io/identidad-or9/" />
-    <meta property="og:title" content="LUIS URIEL PIMENTEL PÉREZ | ARCH-OR9" />
-    <meta property="og:description" content="[VRP-RESEARCHER] Especialista en Arquitectura Crítica y Optimización Bit-Perfect. Nodo Verificado 2026." />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&display=swap');
-        :root { --bg: #000; --cyan: #00ffa3; --blue: #0070f3; --glass: rgba(10, 10, 10, 0.9); }
-        body { background: var(--bg); color: #fff; font-family: 'JetBrains Mono', monospace; height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        body::before { content: ""; position: absolute; width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 255, 163, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02)); background-size: 100% 2px, 3px 100%; pointer-events: none; }
-        .art-container { z-index: 1; width: 85%; max-width: 800px; padding: 50px; background: var(--glass); border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px); position: relative; }
-        .header-section { border-left: 3px solid var(--cyan); padding-left: 25px; margin-bottom: 30px; }
-        h1 { font-size: 2rem; font-weight: 300; letter-spacing: -1px; margin: 0; }
-        .tagline { color: var(--cyan); font-size: 0.65rem; letter-spacing: 4px; margin-top: 8px; }
-        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 40px 0; }
-        .stat-box { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; }
-        .label { font-size: 0.55rem; color: #555; text-transform: uppercase; }
-        .value { font-size: 0.85rem; color: #aaa; margin-top: 4px; }
-        .verify-btn { display: inline-block; padding: 12px 35px; border: 1px solid var(--cyan); color: var(--cyan); text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; transition: 0.3s; cursor: pointer; }
-        .verify-btn:hover { background: var(--cyan); color: #000; box-shadow: 0 0 25px var(--cyan); }
-        .glitch-active { animation: glitch 0.2s linear infinite; color: #ff00c1 !important; }
-        @keyframes glitch { 0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); } 80% { transform: translate(2px, -2px); } 100% { transform: translate(0); } }
-    </style>
+<meta charset="UTF-8">
+<title>LUPP-OR9 | Luis Uriel Pimentel Pérez</title>
+<meta property="fb:app_id" content="966242223397117" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://urielcabeza2-spec.github.io/identidad-or9/" />
+<meta property="og:title" content="LUIS URIEL PIMENTEL PÉREZ | ARCH-OR9" />
+<meta property="og:description" content="[VRP-RESEARCHER] Especialista en Arquitectura Crítica y Optimización Bit-Perfect. Nodo Verificado 2026." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&display=swap');
+:root { --bg: #000; --cyan: #00ffa3; --blue: #0070f3; --glass: rgba(10, 10, 10, 0.9); }
+body { background: var(--bg); color: #fff; font-family: 'JetBrains Mono', monospace; height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+body::before { content: ""; position: absolute; width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 255, 163, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02)); background-size: 100% 2px, 3px 100%; pointer-events: none; }
+.art-container { z-index: 1; width: 85%; max-width: 800px; padding: 50px; background: var(--glass); border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px); position: relative; }
+.header-section { border-left: 3px solid var(--cyan); padding-left: 25px; margin-bottom: 30px; }
+h1 { font-size: 2rem; font-weight: 300; letter-spacing: -1px; margin: 0; }
+.tagline { color: var(--cyan); font-size: 0.65rem; letter-spacing: 4px; margin-top: 8px; }
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 40px 0; }
+.stat-box { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; }
+.label { font-size: 0.55rem; color: #555; text-transform: uppercase; }
+.value { font-size: 0.85rem; color: #aaa; margin-top: 4px; }
+.verify-btn { display: inline-block; padding: 12px 35px; border: 1px solid var(--cyan); color: var(--cyan); text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; transition: 0.3s; cursor: pointer; }
+.verify-btn:hover { background: var(--cyan); color: #000; box-shadow: 0 0 25px var(--cyan); }
+.glitch-active { animation: glitch 0.2s linear infinite; color: #ff00c1 !important; }
+@keyframes glitch { 0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); } 80% { transform: translate(2px, -2px); } 100% { transform: translate(0); } }
+</style>
 </head>
 <body>
-    <div class="art-container">
-        <div class="header-section">
-            <h1 id="name">LUIS URIEL PIMENTEL PÉREZ</h1>
-            <div class="tagline">SYSTEM ARCHITECT // NODE LUPP-OR9</div>
-        </div>
-        <div class="stat-grid">
-            <div class="stat-box">
-                <div class="label">Cyber Ops</div>
-                <div class="value">Google VRP <span style="color:var(--blue)">[ASSIGNED]</span></div>
-            </div>
-            <div class="stat-box">
-                <div class="label">Signal Engine</div>
-                <div class="value">MHC-PZD1 <span style="color:var(--cyan)">[BIT-PERFECT]</span></div>
-            </div>
-        </div>
-        <a href="https://github.com/urielcabeza2-spec" class="verify-btn" id="btn">VERIFICAR CREDENCIALES</a>
-    </div>
-    <script>
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const btn = document.getElementById('btn');
-        const nameText = document.getElementById('name');
-        function playTacticalSound() {
-            if (ctx.state === 'suspended') ctx.resume();
-            const osc = ctx.createOscillator();
-            const g = ctx.createGain();
-            osc.type = "sine";
-            osc.frequency.setValueAtTime(800, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.08);
-            g.gain.setValueAtTime(0.15, ctx.currentTime);
-            g.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08);
-            osc.connect(g); g.connect(ctx.destination);
-            osc.start(); osc.stop(ctx.currentTime + 0.08);
-        }
-        btn.addEventListener('mousedown', () => {
-            playTacticalSound();
-            nameText.classList.add('glitch-active');
-            setTimeout(() => nameText.classList.remove('glitch-active'), 250);
-        });
-    </script>
+<div class="art-container">
+<div class="header-section"><h1 id="name">LUIS URIEL PIMENTEL PÉREZ</h1><div class="tagline">SYSTEM ARCHITECT // NODE LUPP-OR9</div></div>
+<div class="stat-grid">
+<div class="stat-box"><div class="label">Cyber Ops</div><div class="value">Google VRP <span style="color:var(--blue)">[ASSIGNED]</span></div></div>
+<div class="stat-box"><div class="label">Signal Engine</div><div class="value">MHC-PZD1 <span style="color:var(--cyan)">[BIT-PERFECT]</span></div></div>
+</div>
+<a href="https://github.com/urielcabeza2-spec" class="verify-btn" id="btn">VERIFICAR CREDENCIALES</a>
+</div>
+<script>
+const ctx = new (window.AudioContext || window.webkitAudioContext)();
+const btn = document.getElementById('btn');
+const nameText = document.getElementById('name');
+function playTacticalSound() { if (ctx.state === 'suspended') ctx.resume(); const osc = ctx.createOscillator(); const g = ctx.createGain(); osc.type = "sine"; osc.frequency.setValueAtTime(800, ctx.currentTime); osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.08); g.gain.setValueAtTime(0.15, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08); osc.connect(g); g.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + 0.08); }
+btn.addEventListener('mousedown', () => { playTacticalSound(); nameText.classList.add('glitch-active'); setTimeout(() => nameText.classList.remove('glitch-active'), 250); });
+</script>
 </body>
 </html>
