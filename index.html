@@ -9,14 +9,20 @@
 :root { --bg: #030303; --cyan: #00ffa3; --red: #ff3e3e; }
 body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
 .vault-container { width: 90%; max-width: 400px; background: #080808; border: 1px solid #111; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8); position: relative; }
-h1 { font-size: 1.2rem; letter-spacing: 8px; font-weight: 100; margin-bottom: 30px; }
+
+/* El nombre ahora es tu Llave Maestra */
+.master-header { font-size: 1.2rem; letter-spacing: 8px; font-weight: 100; margin-bottom: 30px; cursor: default; user-select: none; transition: 0.3s; }
+.master-header:active { color: var(--cyan); opacity: 0.5; }
+
 .pass-display { background: #000; padding: 20px; font-family: 'JetBrains Mono'; font-size: 1.5rem; letter-spacing: 10px; color: var(--cyan); margin-bottom: 20px; border: 1px solid #222; min-height: 35px; }
 .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .key { background: #0a0a0a; border: 1px solid #222; color: #fff; padding: 20px; font-family: 'JetBrains Mono'; cursor: pointer; transition: 0.2s; }
 .key:hover { border-color: var(--cyan); }
+
 #lock-overlay { display: none; position: absolute; inset: 0; background: rgba(0,0,0,0.98); z-index: 100; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid var(--red); }
 #timer { font-size: 3rem; color: var(--red); font-family: 'JetBrains Mono'; margin-top: 5px; }
 .ip-alert { font-family: 'JetBrains Mono'; font-size: 0.6rem; color: var(--red); opacity: 0.8; margin-top: 20px; text-transform: uppercase; }
+
 #evidence-room { display: none; margin-top: 20px; padding: 20px; background: #001a10; border: 1px solid var(--cyan); color: var(--cyan); font-family: 'JetBrains Mono'; font-size: 0.7rem; text-align: left; }
 .status-msg { font-size: 0.5rem; letter-spacing: 2px; margin-top: 15px; color: #444; text-transform: uppercase; }
 </style>
@@ -29,7 +35,9 @@ h1 { font-size: 1.2rem; letter-spacing: 8px; font-weight: 100; margin-bottom: 30
         <div id="timer">60</div>
         <div style="font-size: 0.5rem; color: #666; margin-top: 10px; letter-spacing: 2px;">INTRUSION ATTEMPT LOGGED</div>
     </div>
-    <h1>SECURE VAULT</h1>
+    
+    <h1 class="master-header" onclick="masterReset()">LUPP — OR9</h1>
+    
     <div class="pass-display" id="display">****</div>
     <div class="keypad" id="keypad">
         <div class="key" onclick="press(1)">1</div><div class="key" onclick="press(2)">2</div><div class="key" onclick="press(3)">3</div>
@@ -38,6 +46,7 @@ h1 { font-size: 1.2rem; letter-spacing: 8px; font-weight: 100; margin-bottom: 30
         <div class="key" onclick="clearPass()" style="color:var(--red)">C</div><div class="key" onclick="press(0)">0</div><div class="key" onclick="verify()" style="color:var(--cyan)">E</div>
     </div>
     <div class="status-msg" id="status">Attempts Left: 3</div>
+    
     <div id="evidence-room">
         > ACCESS GRANTED.<br>
         > REPORT: CVE-2026-0322 (MEMORY CORRUPTION)<br>
@@ -49,6 +58,7 @@ h1 { font-size: 1.2rem; letter-spacing: 8px; font-weight: 100; margin-bottom: 30
 <script>
 let input = "";
 let attempts = 3;
+let lockInterval;
 const masterCode = "2026";
 const display = document.getElementById('display');
 const status = document.getElementById('status');
@@ -70,6 +80,20 @@ function playTone(freq, dur, type='sine') {
     osc.start(); osc.stop(audioCtx.currentTime + dur);
 }
 
+// TU LLAVE MAESTRA SECRETA
+function masterReset() {
+    if(overlay.style.display === 'flex') {
+        clearInterval(lockInterval);
+        overlay.style.display = 'none';
+        attempts = 3;
+        status.innerText = "Master Override Active";
+        status.style.color = "var(--cyan)";
+        playTone(1500, 0.1);
+        setTimeout(() => playTone(2000, 0.1), 100);
+        clearPass();
+    }
+}
+
 function press(num) {
     if(input.length < 4) {
         input += num;
@@ -86,12 +110,12 @@ function startLockdown() {
     overlay.style.display = 'flex';
     let timeLeft = 60;
     playTone(150, 0.8, 'sawtooth');
-    const interval = setInterval(() => {
+    lockInterval = setInterval(() => {
         timeLeft--;
         timerEl.innerText = timeLeft;
         if(timeLeft % 2 === 0) playTone(120, 0.1, 'square');
         if(timeLeft <= 0) {
-            clearInterval(interval);
+            clearInterval(lockInterval);
             overlay.style.display = 'none';
             attempts = 3;
             status.innerText = "Attempts Left: 3";
