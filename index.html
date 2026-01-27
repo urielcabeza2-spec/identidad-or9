@@ -1,66 +1,35 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="google-site-verification" content="HPPzyk2d6f6mEP5b0vrxjTduA5PEA5U_1DaSxmsH2W8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUPP-OR9 | Access Fixed</title>
-<style>
-:root { --bg: #000; --v: #bc13fe; --c: #00ffa3; }
-body { background: var(--bg); color: #fff; font-family: monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-.v-box { border: 1px solid #222; padding: 30px; text-align: center; background: #050505; width: 280px; box-shadow: 0 0 20px rgba(188,19,254,0.1); }
-.d { background: #000; border: 1px solid var(--v); padding: 15px; color: var(--v); margin-bottom: 20px; font-size: 1.5rem; letter-spacing: 5px; height: 30px; line-height: 30px; }
-.g { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.b { border: 1px solid #333; padding: 15px; cursor: pointer; background: #0a0a0a; color: #fff; font-size: 1.2rem; }
-.b:active { background: var(--v); color: #000; }
-#content { display: none; padding: 20px; text-align: left; max-width: 500px; border: 1px solid var(--c); background: #000a00; }
-</style>
+    <meta name="google-site-verification" content="HPPzyk2d6f6mEP5b0vrxjTduA5PEA5U_1DaSxmsH2W8" />
+    <meta charset="UTF-8">
+    <title>LUPP-OR9 | FINAL FIX</title>
+    <style>
+        body { background: #000; color: #00ffa3; font-family: monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        input { background: #111; border: 1px solid #bc13fe; color: #fff; padding: 10px; text-align: center; font-size: 1.2rem; margin-bottom: 10px; }
+        button { background: #bc13fe; border: none; padding: 10px 20px; cursor: pointer; color: #fff; font-weight: bold; }
+    </style>
 </head>
-<body onclick="initAudio()">
-<div id="lock" class="v-box">
-    <div style="color:var(--v); font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 15px; font-weight: bold;">LUPP-OR9 GATEWAY</div>
-    <div class="d" id="disp">----</div>
-    <div class="g">
-        <script>for(let i=1;i<=9;i++)document.write(`<div class="b" onclick="p('${i}')">${i}</div>`);</script>
-        <div class="b" onclick="clr()" style="color:#ff3e3e">C</div>
-        <div class="b" onclick="p('0')">0</div>
-        <div class="b" onclick="val()" style="color:var(--c)">ENT</div>
+<body>
+    <div id="gate">
+        <h3 style="color:#bc13fe">LUPP-OR9 GATEWAY</h3>
+        <input type="password" id="p" placeholder="CÓDIGO" maxlength="4">
+        <br>
+        <button onclick="v()">ENTRAR</button>
     </div>
-</div>
-
-<div id="content">
-    <h2 style="color:var(--c); border-bottom: 1px solid var(--c); padding-bottom: 10px;">ACCESO AUTORIZADO</h2>
-    <p style="font-size: 0.8rem; color: #888;">Bienvenido, Arquitecto <strong>Luis Uriel</strong>.</p>
-    <p style="font-size: 0.7rem; color: #666;">Propiedad verificada en Google Search Console. Protocolo PQC y DID activos.</p>
-</div>
-
-<script>
-let i="", ctx;
-// Hash exacto para "2026" sin espacios
-const TARGET = "9B8F25F690B4C697B12C217DB1F7B4810757C8A977B5474CC053155106AF8072";
-
-function initAudio(){ if(!ctx) ctx = new(window.AudioContext||window.webkitAudioContext)(); }
-function beep(f,d){ if(!ctx)return; let o=ctx.createOscillator(), g=ctx.createGain(); o.frequency.value=f; g.gain.value=0.1; o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+d); }
-
-function p(n){ if(i.length < 4){ i += n; document.getElementById('disp').innerText = '*'.repeat(i.length); beep(800, 0.05); } }
-function clr(){ i = ""; document.getElementById('disp').innerText = "----"; beep(200, 0.1); }
-
-async function val(){
-    const msgUint8 = new TextEncoder().encode(i);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
-    
-    if(hashHex === TARGET){
-        beep(1200, 0.3);
-        document.getElementById('lock').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-    } else {
-        beep(150, 0.5);
-        alert("ERROR DE FIRMA: Código Incorrecto");
-        clr();
-    }
-}
-</script>
+    <div id="ok" style="display:none; text-align:center;">
+        <h1>PROPIEDAD VERIFICADA</h1>
+        <p>Nodo LUPP-OR9 Sincronizado con Google Search Console.</p>
+    </div>
+    <script>
+        function v() {
+            if(document.getElementById('p').value === '2026') {
+                document.getElementById('gate').style.display = 'none';
+                document.getElementById('ok').style.display = 'block';
+            } else {
+                alert('ERROR');
+            }
+        }
+    </script>
 </body>
 </html>
