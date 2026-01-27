@@ -3,23 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' fonts.googleapis.com fonts.gstatic.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; script-src 'self' 'unsafe-inline';">
-<title>LUPP-OR9 | Hardened Infrastructure</title>
+<title>LUPP-OR9 | Secure Infrastructure</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400&family=JetBrains+Mono:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&family=JetBrains+Mono:wght@100;400&display=swap');
 :root { --bg: #050505; --cyan: #00ffa3; --red: #ff3e3e; }
 body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.vault-container { width: 90%; max-width: 400px; background: #000; border: 1px solid #151515; padding: 40px; border-radius: 4px; position: relative; }
-.header { border-bottom: 1px solid #151515; padding-bottom: 20px; margin-bottom: 30px; }
+.vault-container { width: 95%; max-width: 600px; background: #000; border: 1px solid #151515; padding: 30px; border-radius: 4px; max-height: 90vh; overflow-y: auto; position: relative; }
+.header { border-bottom: 1px solid #151515; padding-bottom: 20px; margin-bottom: 30px; text-align: center; }
 h1 { font-size: 1rem; letter-spacing: 6px; font-weight: 400; color: #fff; margin: 0; }
 .display { background: #080808; border: 1px solid #1a1a1a; padding: 25px; font-family: 'JetBrains Mono'; font-size: 1.2rem; text-align: center; color: var(--cyan); letter-spacing: 8px; margin-bottom: 25px; }
-.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.btn { background: #0a0a0a; border: 1px solid #1a1a1a; color: #fff; padding: 18px; font-family: 'JetBrains Mono'; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 300px; margin: 0 auto; }
+.btn { background: #0a0a0a; border: 1px solid #1a1a1a; color: #fff; padding: 18px; font-family: 'JetBrains Mono'; cursor: pointer; transition: 0.2s; text-align: center; }
 .btn:hover { background: #111; border-color: #333; }
-.btn:active { background: var(--cyan); color: #000; transform: scale(0.95); }
+.btn:active { background: var(--cyan); color: #000; }
 #overlay { display: none; position: absolute; inset: 0; background: #000; z-index: 10; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--red); }
-#response { margin-top: 20px; font-family: 'JetBrains Mono'; font-size: 0.6rem; color: #444; text-transform: uppercase; }
-.content-area { display: none; text-align: left; font-family: 'JetBrains Mono'; font-size: 0.7rem; line-height: 1.6; }
+#response { margin-top: 20px; font-family: 'JetBrains Mono'; font-size: 0.6rem; color: #444; text-transform: uppercase; text-align: center; }
+
+/* Whitepaper & Audit Log Styles */
+.secure-content { display: none; text-align: left; font-family: 'JetBrains Mono'; font-size: 0.75rem; color: #ccc; }
+.wp-header { color: var(--cyan); border-bottom: 1px solid var(--cyan); padding-bottom: 10px; margin: 20px 0 10px; font-weight: 700; text-transform: uppercase; }
+.audit-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.65rem; }
+.audit-table th { color: #666; text-align: left; padding: 8px; border-bottom: 1px solid #222; }
+.audit-table td { padding: 8px; border-bottom: 1px solid #111; }
 .cyan { color: var(--cyan); }
 </style>
 </head>
@@ -31,65 +37,58 @@ h1 { font-size: 1rem; letter-spacing: 6px; font-weight: 400; color: #fff; margin
     </div>
     
     <div id="main-ui">
-        <div class="header"><h1>LUPP // OR9-NODE</h1></div>
+        <div class="header" onclick="mR()"><h1>LUPP // OR9-NODE</h1></div>
         <div class="display" id="d">****</div>
         <div class="keypad">
-            <script>
-                for(let i=1;i<=9;i++) document.write(`<div class="btn" onclick="p('${i}')">${i}</div>`);
-            </script>
+            <script>for(let i=1;i<=9;i++) document.write(`<div class="btn" onclick="p('${i}')">${i}</div>`);</script>
             <div class="btn" onclick="c()" style="color:var(--red)">CLR</div>
             <div class="btn" onclick="p('0')">0</div>
             <div class="btn" onclick="v()" style="color:var(--cyan)">ENT</div>
         </div>
-        <div id="response">Waiting for credentials...</div>
+        <div id="response">Waiting for authorized signature...</div>
     </div>
 
-    <div id="evidence" class="content-area">
-        <span class="cyan">> ARCHITECT IDENTITY VERIFIED</span><br>
-        > ROLE: INFRASTRUCTURE & VRP RESEARCHER<br>
-        > NODE: LUPP-OR9 [STABLE]<br>
-        > ENCRYPTION: AES-GCM 256-BIT<br><br>
-        <span class="cyan">> SECURITY PROTOCOL 2026 ACTIVE</span>
+    <div id="evidence" class="secure-content">
+        <div class="wp-header">Audit Log: Authorized Nodes</div>
+        <table class="audit-table">
+            <thead>
+                <tr><th>NODE_ID</th><th>STATUS</th><th>LEVEL</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>ALPHA-001</td><td class="cyan">ONLINE</td><td>ROOT</td></tr>
+                <tr><td>NODE-LUPP</td><td class="cyan">ACTIVE</td><td>ARCHITECT</td></tr>
+                <tr><td>PROXY-V4</td><td>STANDBY</td><td>GUEST</td></tr>
+            </tbody>
+        </table>
+
+        <div class="wp-header">White Paper: CVE-2026-0322</div>
+        <p><span class="cyan">[SYSTEM]</span> Memory Leak identified in Audio Buffer Stream. Patch 0.9.1 applied to Sony-MHC controllers.</p>
+        <p><span class="cyan">[ENCRYPTION]</span> All local data hashed via SHA-256. Zero-Knowledge Proof protocol in use.</p>
     </div>
 </div>
 
 <script>
-let i="", attempts=0, a;
-// HASH REAL DE '2026' - No se puede revertir a texto plano
-const TARGET = "9B8F25F690B4C697B12C217DB1F7B4810757C8A977B5474CC053155106AF8072";
+let i="", att=0, a, lk=false;
+const TGT = "9B8F25F690B4C697B12C217DB1F7B4810757C8A977B5474CC053155106AF8072";
 
-async function h(s) {
-    const m = new TextEncoder().encode(s);
-    const b = await crypto.subtle.digest('SHA-256', m);
-    return Array.from(new Uint8Array(b)).map(b => b.toString(16).padStart(2,'0')).join('').toUpperCase();
-}
+async function h(s){const m=new TextEncoder().encode(s);const b=await crypto.subtle.digest('SHA-256',m);return Array.from(new Uint8Array(b)).map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();}
+function aInit(){if(!a)a=new(window.AudioContext||window.webkitAudioContext)();}
+function s(f,d){if(!a)return;let o=a.createOscillator(),g=a.createGain();o.frequency.value=f;g.gain.value=0.1;o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+d);}
+function p(n){if(i.length<4){i+=n;document.getElementById('d').innerText='*'.repeat(i.length);s(800,0.05);}}
+function c(){i="";document.getElementById('d').innerText='****';s(300,0.1);}
+function mR(){if(lk)location.reload();}
 
-function aInit() { if(!a) a=new(window.AudioContext||window.webkitAudioContext)(); }
-function s(f,d) { if(!a) return; let o=a.createOscillator(), g=a.createGain(); o.frequency.value=f; g.gain.value=0.1; o.connect(g); g.connect(a.destination); o.start(); o.stop(a.currentTime+d); }
-
-function p(n) { if(i.length<4){ i+=n; document.getElementById('d').innerText='*'.repeat(i.length); s(800,0.05); } }
-function c() { i=""; document.getElementById('d').innerText='****'; s(300,0.1); }
-
-async function v() {
-    const currentHash = await h(i);
-    if(currentHash === TARGET) {
-        s(1200, 0.3);
-        document.getElementById('main-ui').style.display='none';
+async function v(){
+    if(await h(i)===TGT){
+        s(1200,0.3); document.getElementById('main-ui').style.display='none';
         document.getElementById('evidence').style.display='block';
-    } else {
-        attempts++;
-        s(150, 0.5);
-        if(attempts >= 3) {
-            document.getElementById('overlay').style.display='flex';
+    }else{
+        att++; s(150,0.5);
+        if(att>=3){
+            lk=true; document.getElementById('overlay').style.display='flex';
             let t=60;
-            const iv = setInterval(() => {
-                t--; document.getElementById('timer').innerText=t;
-                if(t<=0){ clearInterval(iv); location.reload(); }
-            }, 1000);
-        } else {
-            document.getElementById('response').innerText = `Access Denied (${3-attempts} left)`;
-            c();
-        }
+            setInterval(()=>{t--;document.getElementById('timer').innerText=t;if(t<=0)location.reload();},1000);
+        }else{document.getElementById('response').innerText=`Signature Invalid (${3-att} left)`;c();}
     }
 }
 </script>
