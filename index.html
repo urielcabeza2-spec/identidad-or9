@@ -4,79 +4,64 @@
     <meta name="google-site-verification" content="HPPzyk2d6f6mEP5b0vrxjTduA5PEA5U_1DaSxmsH2W8" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUPP-OR9 | Verified Identity</title>
+    <title>LUPP-OR9 | ARCHITECT ID</title>
     <style>
-        :root { --bg: #000; --v: #bc13fe; --c: #00ffa3; --g: #333; }
-        body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-        
-        /* Estilo del Gateway */
-        .v-box { border: 1px solid #222; padding: 25px; text-align: center; background: #050505; width: 280px; box-shadow: 0 0 15px rgba(188,19,254,0.2); }
+        :root { --bg: #000; --v: #bc13fe; --c: #00ffa3; }
+        body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
+        .v-box { border: 1px solid #222; padding: 25px; text-align: center; background: #050505; width: 280px; }
         .d { background: #000; border: 1px solid var(--v); padding: 10px; color: var(--v); margin-bottom: 20px; font-size: 1.5rem; letter-spacing: 5px; height: 35px; }
         .g { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        .b { border: 1px solid #333; padding: 12px; cursor: pointer; background: #0a0a0a; color: #fff; font-size: 1.1rem; border-radius: 4px; }
+        .b { border: 1px solid #333; padding: 12px; cursor: pointer; background: #0a0a0a; color: #fff; font-size: 1.1rem; }
         .b:active { background: var(--v); color: #000; }
 
-        /* Estilo de la Tarjeta de Presumir */
-        #id-card { display: none; width: 350px; background: linear-gradient(145deg, #0a0a0a, #111); border: 1px solid var(--c); padding: 20px; border-radius: 10px; position: relative; overflow: hidden; box-shadow: 0 0 30px rgba(0,255,163,0.1); }
-        #id-card::before { content: "VERIFIED BY GOOGLE"; position: absolute; top: 10px; right: -30px; background: var(--c); color: #000; font-size: 0.5rem; font-weight: bold; padding: 5px 40px; transform: rotate(45deg); }
-        .card-header { border-bottom: 1px solid var(--g); padding-bottom: 10px; margin-bottom: 15px; }
-        .photo-placeholder { width: 70px; height: 70px; border: 1px solid var(--c); float: left; margin-right: 15px; display: flex; align-items: center; justify-content: center; background: #001a00; color: var(--c); font-size: 2rem; }
-        .info { font-size: 0.8rem; line-height: 1.4; }
-        .info b { color: var(--c); text-transform: uppercase; }
-        .status-pill { display: inline-block; background: #002200; border: 1px solid var(--c); color: var(--c); padding: 2px 8px; font-size: 0.6rem; border-radius: 10px; margin-top: 5px; }
+        /* LA TARJETA DE LUIS URIEL */
+        #id-card { display: none; width: 320px; background: #080808; border: 2px solid var(--c); padding: 20px; border-radius: 12px; position: relative; box-shadow: 0 0 25px rgba(0,255,163,0.2); }
+        .banner { position: absolute; top: 12px; right: -25px; background: var(--c); color: #000; font-size: 0.5rem; font-weight: bold; padding: 3px 30px; transform: rotate(45deg); }
+        .photo { width: 60px; height: 60px; border: 1px solid var(--c); float: left; margin-right: 15px; background: #001500; display: flex; align-items: center; justify-content: center; color: var(--c); font-weight: bold; }
+        .details { font-size: 0.75rem; line-height: 1.5; }
+        .details b { color: var(--c); }
+        .pill { display: inline-block; border: 1px solid var(--c); color: var(--c); padding: 2px 8px; font-size: 0.55rem; border-radius: 10px; margin-top: 10px; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
 <div id="lock" class="v-box">
-    <div style="color:var(--v); font-size: 0.6rem; letter-spacing: 3px; margin-bottom: 15px;">LUPP-OR9 // SECURITY GATEWAY</div>
+    <div style="color:var(--v); font-size: 0.6rem; letter-spacing: 2px; margin-bottom: 15px;">LUPP-OR9 GATEWAY v2.6</div>
     <div class="d" id="disp">----</div>
     <div class="g">
         <script>for(let i=1;i<=9;i++)document.write(`<div class="b" onclick="p('${i}')">${i}</div>`);</script>
-        <div class="b" onclick="clr()" style="color:#ff3e3e">C</div>
-        <div class="b" onclick="p('0')">0</div>
-        <div class="b" onclick="val()" style="color:var(--c)">ENT</div>
+        <div class="b" onclick="clr()" style="color:red">C</div><div class="b" onclick="p('0')">0</div><div class="b" onclick="val()" style="color:var(--c)">ENT</div>
     </div>
 </div>
 
 <div id="id-card">
-    <div class="card-header">
-        <div style="color:var(--c); font-weight: bold; font-size: 1rem;">LUPP-OR9 ARCHITECT</div>
-        <div style="color:#666; font-size: 0.5rem;">GLOBAL INFRASTRUCTURE ID</div>
+    <div class="banner">VERIFIED</div>
+    <div class="photo">LU</div>
+    <div class="details">
+        <b>NAME:</b> Luis Uriel Pimentel Pérez<br>
+        <b>RANK:</b> Infrastructure Architect<br>
+        <b>NODE:</b> LUPP-OR9 / PQC<br>
+        <b>STATUS:</b> <span style="color:var(--c)">AUTHORIZED</span>
     </div>
-    <div class="photo-placeholder">LU</div>
-    <div class="info">
-        <b>Nombre:</b> Luis Uriel Pimentel Pérez<br>
-        <b>Rango:</b> Infrastructure Architect<br>
-        <b>Nodo:</b> urielcabeza2-spec.github.io<br>
-        <b>Estado:</b> <span class="status-pill">PROPIEDAD VERIFICADA</span>
-    </div>
-    <div style="clear:both; margin-top:20px; font-size:0.5rem; color:#444; text-align:right;">
-        HASH_AUTH: 9B8F25F690B4...<br>
-        GOOGLE_CONSOLE_INDEX: ACTIVE
+    <div style="clear:both;"></div>
+    <center><div class="pill">Google Property Verified</div></center>
+    <div style="margin-top:15px; font-size:0.45rem; color:#444; border-top:1px solid #222; pt:5px;">
+        SIGNATURE: 9B8F25F690B4...[ACTIVE]
     </div>
 </div>
 
 <script>
 let i="";
 const TARGET = "9B8F25F690B4C697B12C217DB1F7B4810757C8A977B5474CC053155106AF8072";
-
 function p(n){ if(i.length < 4){ i += n; document.getElementById('disp').innerText = '*'.repeat(i.length); } }
 function clr(){ i = ""; document.getElementById('disp').innerText = "----"; }
-
 async function val(){
-    const msgUint8 = new TextEncoder().encode(i);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
-    
-    if(hashHex === TARGET){
+    const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(i));
+    const h = Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('').toUpperCase();
+    if(h === TARGET){
         document.getElementById('lock').style.display = 'none';
         document.getElementById('id-card').style.display = 'block';
-    } else {
-        alert("ERROR DE FIRMA: ACCESO DENEGADO");
-        clr();
-    }
+    } else { alert("CODE ERROR"); clr(); }
 }
 </script>
 </body>
