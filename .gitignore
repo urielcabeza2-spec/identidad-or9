@@ -1,39 +1,4 @@
-# --- LUPP-OR9 PRIVACY SHIELD ---
-
-# Mobile & OS Metadata (Blindaje de dispositivo)
-.DS_Store
-Thumbs.db
-.directory
-*.tmp
-*.log
-.Trashes
-.Spotlight-V100
-.AppleDouble
-.LSOverride
-
-# Termux & Shell History
-.bash_history
 .zsh_history
-.termux/
-.apt-history
-
-# Environment & Private Keys (Seguridad de Bughunter)
-.env
-*.pem
-*.key
-.secret*
-credentials.json
-auth/
-
-# Node & Build Artifacts
-node_modules/
-dist/
-build/
 .cache/
-npm-debug.log*
-
-# IDE & Editor Config
-.vscode/
-.idea/
-*.swp
-*~
+*.txt
+*.json
